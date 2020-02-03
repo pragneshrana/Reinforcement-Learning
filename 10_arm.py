@@ -93,19 +93,13 @@ class bandit_simulator():
     softmax action follows gibbs distribution. Apply the gibbs distribution(softmax) previous reward it will convert the output into the 
     probability and it will pick the arm based on supplied probability.
     '''
-    sum_soft_reward = 0
-    for i in range(self.no_of_arms):
-      self.softmax_converted_reward[i] = np.exp(self.reward[i]/self.temperature)
-      if()
-      sum_soft_reward += self.softmax_converted_reward[i]
-
-    #normalized 
-    for i in range(self.no_of_arms):
-          self.softmax_converted_reward[i] = self.softmax_converted_reward[i]/sum_soft_reward
+    numerator = np.exp(self.reward/self.temperature)
+    sum_soft_reward =np.sum(numerator) #denomenator
+    self.softmax_converted_reward = numerator/sum_soft_reward
     
     ###Pick arm based on distribution
     # draw = choice(list_of_candidates, number_of_items_to_pick,p=probability_distribution)
-    self.selected_arm_index = np.random.choice(self.no_of_arms,1,p=self.softmax_converted_reward)
+    self.selected_arm_index = np.random.choice([x for x in range(self.no_of_arms)],1,p=self.softmax_converted_reward)[0]
     self.selected_arm_mean = self.arms[self.selected_arm_index]
 
   def avg_reward_update(self,play_index):
@@ -131,10 +125,10 @@ class bandit_simulator():
     '''
     chekc code by printing output
     '''
-    print('softmax_converted_reward: ', self.softmax_converted_reward)
-    print('self.selected_arm_index: ', self.selected_arm_index)
     print('Mean assigned to each arm',self.arms)
+    print('self.selected_arm_index: ', self.selected_arm_index)
     print('Reward_after_each_play :',self.reward_after_each_play)
+    print('softmax_converted_reward: ', self.softmax_converted_reward)
     print('Rewads with each arm',self.reward)
     print('Avg reward :',self.avg_reward)
     print('counter_of_selected_arm: ', self.counter_of_selected_arm)
@@ -182,31 +176,32 @@ class bandit_simulator():
       self.update_counter_of_selected_arm()
       self.update_reward()
       self.avg_reward_update(0)
-      self.check_result_softmax()
+      # self.check_result_softmax()
       for j in range(1,self.no_of_plays):
         self.softmax_action_pick()
         self.obtain_reward()
         self.update_counter_of_selected_arm()
         self.update_reward()
         self.avg_reward_update(j)
-        self.check_result_softmax()
+        # self.check_result_softmax()
     final_avg_reward = self.avg_reward/self.no_of_bandit_prob
     return final_avg_reward
 
 print('hello')
-no_of_plays = 100
-no_of_bandits = 10
-# greedy = bandit_simulator(no_of_arms=10,mu=0,sigma=1,no_of_plays=no_of_plays,no_of_bandit_prob=no_of_bandits,epsilon=0)
-# avg_reward_zero_greedy = greedy.simulate_epsilon_greedy_policy()
+no_of_plays = 1000
+no_of_bandits = 200
 
-# greedy_2 = bandit_simulator(no_of_arms=10,mu=0,sigma=1,no_of_plays=no_of_plays,no_of_bandit_prob=no_of_bandits,epsilon=0.1)
-# avg_reward_01_greedy = greedy.simulate_epsilon_greedy_policy()
+greedy = bandit_simulator(no_of_arms=10,mu=0,sigma=1,no_of_plays=no_of_plays,no_of_bandit_prob=no_of_bandits,epsilon=0)
+avg_reward_zero_greedy = greedy.simulate_epsilon_greedy_policy()
 
-# greedy_3 = bandit_simulator(no_of_arms=10,mu=0,sigma=1,no_of_plays=no_of_plays,no_of_bandit_prob=no_of_bandits,epsilon=0.3)
-# avg_reward_1_greedy = greedy.simulate_epsilon_greedy_policy()
+greedy_2 = bandit_simulator(no_of_arms=10,mu=0,sigma=1,no_of_plays=no_of_plays,no_of_bandit_prob=no_of_bandits,epsilon=0.001)
+avg_reward_01_greedy = greedy.simulate_epsilon_greedy_policy()
 
-softmax_05 = bandit_simulator(no_of_arms=3,mu=0,sigma=1,no_of_plays=no_of_plays,no_of_bandit_prob=no_of_bandits,temperature=0.5)
-avg_reward_soft_05 = softmax_05.simulate_softmax_policy()
+greedy_3 = bandit_simulator(no_of_arms=10,mu=0,sigma=1,no_of_plays=no_of_plays,no_of_bandit_prob=no_of_bandits,epsilon=0.01)
+avg_reward_1_greedy = greedy.simulate_epsilon_greedy_policy()
+
+# softmax_05 = bandit_simulator(no_of_arms=3,mu=0,sigma=1,no_of_plays=no_of_plays,no_of_bandit_prob=no_of_bandits,temperature=0.1)
+# avg_reward_soft_05 = softmax_05.simulate_softmax_policy()
  
 # softmax_1 = bandit_simulator(no_of_arms=10,mu=0,sigma=1,no_of_plays=no_of_plays,no_of_bandit_prob=no_of_bandits,temperature=1)
 # avg_reward_soft_1= softmax_1.simulate_softmax_policy()
@@ -215,11 +210,12 @@ avg_reward_soft_05 = softmax_05.simulate_softmax_policy()
 # avg_reward_soft_50 = softmax_50.simulate_softmax_policy()
 
 import matplotlib.pyplot as plt
-plt.plot(avg_reward_soft_05)
+# plt.plot(avg_reward_soft_05)
 # plt.plot(avg_reward_soft_1)
 # plt.plot(avg_reward_soft_50)
-# plt.plot(avg_reward_01_greedy)
-# plt.plot(avg_reward_1_greedy)
+plt.plot(avg_reward_zero_greedy)
+plt.plot(avg_reward_01_greedy)
+plt.plot(avg_reward_1_greedy)
 plt.xlabel('No of plays of each bandit problem')
 plt.ylabel('Avg Reward')
 plt.show()
