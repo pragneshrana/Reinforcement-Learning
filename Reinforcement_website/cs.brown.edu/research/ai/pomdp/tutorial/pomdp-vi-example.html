@@ -1,0 +1,514 @@
+<HTML>
+<HEADER>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (X11; I; Linux 2.1.123 i586) [Netscape]">
+   <META NAME="Author" CONTENT="Anthony R. Cassandra">
+   <META NAME="Keywords" CONTENT="POMDP, Markov, Planning, decision theory">
+   <TITLE>POMDPs for Dummies: Page 6</TITLE>
+</HEADER>
+<BODY TEXT="#F0F0F0" BGCOLOR="#003300" LINK="#F8D900" VLINK="#CCCCCC" ALINK="#00FF00">
+
+<CENTER><FONT SIZE="-1"><B>
+<A HREF="pomdp-solving.html">Back</A>
+| <A HREF="index.html">POMDP Tutorial</A>
+| <A HREF="pomdp-soln-form.html">Next</A>
+</B></FONT></CENTER>
+
+<P>
+<IMG SRC="images/brown-clear.gif" HEIGHT=111 WIDTH=102 ALIGN=LEFT>
+
+<CENTER><IMG SRC="images/oak-a-stripe.gif"></CENTER>
+
+<CENTER><H1>POMDP Value Iteration Example</H1></CENTER>
+
+<CENTER><IMG SRC="images/oak-a-stripe.gif"></CENTER>
+
+<P>
+We will now show an example of value iteration proceeding on a problem
+for a horizon length of <tt>3</tt>.  This example will provide some of
+the useful insights, making the connection between the figures and the
+concepts that are needed to explain the general problem.  For this
+problem, we assume the <tt>POMDP</tt> has two states, two actions and
+three observations. <p>
+
+We start with the first horizon.  The value function here will
+represent the best we can hope to do (in terms of value) if we are
+limited to taking a single action.  This is the simplest case;
+normally (for horizon length <tt>h</tt>) we need to trade off the
+immediate rewards and the future rewards.  However, when you have a
+horizon of <tt>1</tt>, there is no future and the value function
+becomes nothing but the immediate rewards. <p>
+
+Since we have two states and two actions, our <tt>POMDP</tt> model
+will include four separate immediate reward values.  These are the
+values of doing each action in each state.  These values are defined
+over the discrete state space of the <tt>POMDP</tt>, but it becomes
+easy to get the value of doing a particular action in a particular
+belief state.  To do this we simply use the probabilities in the
+belief state to weight the value of each state.  <p>
+
+As an example: let action <tt>a1</tt> have a value of <tt>1</tt> in
+state <tt>s1</tt> and <tt>0</tt> in state <tt>s2</tt> and let action
+<tt>a2</tt> have a value of <tt>0</tt> in state <tt>s1</tt> and
+<tt>1.5</tt> in state <tt>s2</tt>.  If our belief state is <tt>[ 0.25
+0.75 ]</tt> then the value of doing action a1 in this belief state is
+<tt>0.25 x 1 + 0.75 x 0 = 0.25</tt>.  Similarly, action <tt>a2</tt>
+has value <tt>0.25 x 0 + 0.75 x 1.5 = 1.125</tt>.  We can display
+these values over belief space with the figure below.  This is, in
+fact, <em>the</em> horizon <tt>1</tt> value function. <p>
+
+<center>
+<img src="figs/horizon1.gif">
+<h3>Horizon 1 value function</h3>
+</center>
+
+The immediate rewards for each action actually specifies a linear
+function over belief space.  Since we are interested in choosing the
+best action, we would choose whichever action gave us the highest
+value, which depends on the particular belief state.  So we actually
+have a PWLC value function for the horizon <tt>1</tt> value function
+simply by considering the immediate rewards that come directly from
+the model.  In the figure above, we also show the partition of belief
+space that this value function imposes.  Here is where the colors will
+start to have some meaning.  The blue region is all the belief states
+where action <tt>a1</tt> is the best strategy to use, and the green
+region is the belief states where action <tt>a2</tt> is the best
+strategy. <p>
+
+With the horizon <tt>1</tt> value function we are now ready to
+construct the horizon <tt>2</tt> value function.  This part of the
+tutorial is the most crucial for understanding <tt>POMDP</tt>
+solutions procedures.  Once you understand how we will build the
+horizon <tt>2</tt> value function, you should have the necessary
+intuition behind <tt>POMDP</tt> value functions to understand the
+various algorithms. <p>
+
+Our goal in building this new value function is to find the best
+action (or highest value) we can achieve using only two actions (i.e.,
+the horizon is <tt>2</tt>) for every belief state.  To show how to
+construct this new value function, we break the problem down into a
+series of three steps.  We will first show how to compute the value of
+a belief state for a given action and observation.  Then we will show
+how to compute the value of a belief state given only an action.
+Finally, we will show how to compute the actual value for a belief
+state. <p>
+
+We start with the problem: given a particular belief state, <tt>b</tt>
+what is the value of doing action <tt>a1</tt>, if after the action we
+received observation <tt>z1</tt>?  In other words we want to find the
+best value possible for a single belief state when the immediate
+action and observation are fixed. <p>
+
+The value of a belief state for horizon <tt>2</tt> is simple the value
+of the immediate action plus the value of the next action.  In
+general, we would like to find the best possible value which would
+include considering all possible sequences of two actions.  However,
+since in our restricted problem our immediate action is fixed, the
+immediate value is fully determined.  We can use the immediate rewards
+for action <tt>a1</tt> to find the value of <tt>b</tt> just like we
+did in constructing the horizon <tt>1</tt> value function.  Recall
+that the horizon <tt>1</tt> value function is nothing but the
+immediate reward function. <p>
+
+The only question is what is best achievable value for the belief
+state that results from our initial belief state <tt>b</tt> when we
+perform action <tt>a1</tt> and observe <tt>z1</tt>.  This isn't really
+much of a problem at all, since we know our initial belief state, the
+action and the resulting observation.  This is all that is required to
+transform <tt>b</tt> into the unique resulting belief state, which we
+will call <tt>b'</tt>.  This new belief state will be the belief state
+we are in when we have one more action to perform; our horizon length
+is <tt>2</tt> and we just did one of the actions.  We know what the
+best values are for every belief state when there is a single action
+left to perform; this is exactly what our horizon <tt>1</tt> value
+function tells us. <p>
+
+The figure below shows this process.  On the left is the immediate
+reward function and on the right is the horizon <tt>1</tt> value
+function.  The immediate rewards for action <tt>a2</tt> are shown with
+a dashed line, since they are not of immediate interest when
+considering the fixed action <tt>a1</tt>. <p>
+
+<center>
+<img src="figs/horizon2-transform-b.gif">
+<h3>Value of a fixed action and observation</h3>
+</center>
+
+Here we will define <tt>T</tt> as the function that transforms the
+belief state for a given belief state, action and observation (the
+formulas are hiding in here).  Note that from looking at where
+<tt>b'</tt> is, we can immediately determine what the best action we
+should do after we do the action <tt>a1</tt>.  The belief state
+<tt>b'</tt> lies in the green region, which means that if we have a
+horizon length of <tt>2</tt> and are forced to take action <tt>a1</tt>
+first, then the best thing we could do afterwards is action
+<tt>a2</tt>. <p>
+
+Recall that what we are concerned with at this point is finding the
+value of the belief state <tt>b</tt> with the fixed action and
+observation.  We have everything we need to calculate this value; we
+know what the immediate reward we will get is and we know the best
+value for the transformed belief state <tt>b'</tt>.  Simply summing
+these two values gives us the value of belief state <tt>b</tt> given
+that we take action <tt>a1</tt> and observe <tt>z1</tt>. As a side
+effect we also know what is the best next action to take. <p>
+
+Suppose we want to find the value for another belief state, given the
+same action and observation.  We simply repeat this process, which
+means all that we really need to do is transform the belief state and
+use the horizon <tt>1</tt> value function to find what value it has
+(the immediate rewards are easy to get).  Now suppose we want to find
+the value for all the belief points given this fixed action and
+observation.  This seems a little harder, since there are way to many
+points we have to do this for.  Fear not, this can actually be done
+fairly easily.  <p>
+
+Our horizon <tt>1</tt> value function is a function of our transformed
+belief state <tt>b'</tt> and our transformed belief state is a
+function of the initial belief state <tt>b</tt> since the action and
+observation is fixed.  It turns out that we can directly construct a
+function over the entire belief space from the horizon <tt>1</tt>
+value function that has the belief transformation built in.  This
+gives us a function which directly tells us the value of each belief
+state after the action <tt>a1</tt> is taken and observation
+<tt>z1</tt> is seen.  The figure below show this transformation. <p>
+
+<center>
+<img src="figs/horizon2-transform-v.gif">
+<h3>Transformed value function</h3>
+</center>
+
+We will use <tt>S()</tt> to represent the transformed value function,
+for a particular action and observation.  The very nice part of this
+is that the transformed value function is also <tt>PWLC</tt> and the
+nicer part is that it always is this way.  (Sorry, the proof requires
+formulas and we can't do those here.)  Now if we want to find the
+value of a belief state for the fixed action and observation we can
+just add the immediate rewards for the belief state and add the value
+we directly get from the transformed function <tt>S(a1,z1)</tt>.  In
+fact we could just add these two functions (immediate rewards and the
+transformed horizon <tt>1</tt> value function) together to get a
+single function for the value of all belief points, given action
+<tt>a1</tt> and observation <tt>z1</tt>. (Note: this is a slight lie
+and we will explain why a bit later.) <p>
+
+We previously decided to solve the simple problem of finding the value
+of a belief state, given a fixed action and observation.  We have
+showed this and actually showed how to find the value of all belief
+states given a fixed action and observation.  Next we want to show how
+to compute the value of a belief state given only the action. <p>
+
+When we were looking at individual points, getting their immediate
+reward value, transforming them and getting the resulting belief
+states value, we where computing the conditional value.  This is the
+value <em>if</em> we see observation <tt>z1</tt>.  However, because
+the observations are probabilistic, we are not guaranteed to see
+<tt>z1</tt>.  In this example, there are three possible observations
+and each one can lead to a separate resulting belief state.  This
+figure below, shows the full situation when we fix our first action to
+be <tt>a1</tt>. <p>
+
+<center>
+<img src="figs/horizon2-transform-b3.gif">
+<h3>Transformed value function</h3>
+</center>
+
+Even though we know the action with certainty, the observation we get
+is not known in advance.  To get the true value of the belief point
+<tt>b</tt> we need to account for all the possible observations we
+could get.  Assuming we know the resulting observation was convenient
+to explain how the process works, but to build a value function for
+horizon <tt>2</tt> we need to be able to compute the value of the
+belief states without prior knowledge of what the outcome will be.
+All of this really is really not that difficult though.  For a given
+belief state, each observation has a certain probability associated
+with it.  If we know the value of the resulting belief state given the
+observation, to get the value of the belief state without knowing the
+observation is just a matter of weighting each resulting value by the
+probability that we will actually get that observation. <p>
+
+This might still be a bit cloudy, so let us do an example.  Suppose
+that we compute the values of the resulting belief states for belief
+state <tt>b</tt>, action <tt>a1</tt> and all three observations and
+find that the values for each resulting belief state are: <tt>z1:0.8,
+z2:0.7, z3:1.2</tt>. These are the values we were initially
+calculating when we were doing things one belief point at a time.  Now
+we also can compute the probability of getting each of the three
+observations for the given belief state and action and find them to
+be: <tt> z1:0.6, z2:0.25, z3:0.15</tt>.  Then the horizon <tt>2</tt>
+value of the belief state <tt>b</tt> when we fix the action at
+<tt>a1</tt> is <tt>0.6x0.8 + 0.25x0.7 + 0.15x1.2 = 0.835</tt> plus the
+immediate reward of doing action <tt>a1</tt> in <tt>b</tt>. <p>
+
+In fact, the transformed value function <tt>S(a1,z1)</tt> we showed
+before actually factors in the probabilities of the observation.  So
+in reality, the <tt>S()</tt> function is not quite what we claimed; we
+claimed that it was the next belief state value of each belief state
+for the fixed action and <em>given</em> the observation.  It reality,
+the <tt>S()</tt> function already has the probability of the
+observation built into it. <p>
+
+Let's look at the situation we currently have with the figure below. <p>
+
+<center>
+<img src="figs/horizon2-transform-v3.gif">
+<h3>Transformed value function for all observations</h3>
+</center>
+
+This figure shows the transformation of the horizon <tt>1</tt> value
+function for the action <tt>a1</tt> and all three observations.
+Notice that the value function is transformed differently for all
+three observations and that each of these transformed functions
+partitions the belief space differently.  How the value function is
+transformed depends on the specific model parameters.  What all this
+implies is that the best next action to perform depends not only upon
+the initial belief state, but also upon exactly which observation we
+get. <p>
+
+So what is the horizon <tt>2</tt> value of a belief state, given a
+particular action <tt>a1</tt>?  Well, it depends not only on the value
+of doing action <tt>a1</tt> but also upon what action we do next
+(where the horizon length will be <tt>1</tt>).  However, what we do
+next will depend upon what observation we get. For a given belief
+state and observation, we can look at the <tt>S()</tt> function
+partition to decide what the best action next action to do is.  This
+is best seen with a figure. <p>
+
+<center>
+<img src="figs/obs-partitions.gif">
+<h3>Partitions for all observations</h3>
+</center>
+
+This figure is just the <tt>S()</tt> partitions from the previous
+figure displayed adjacent to each other.  The blue regions are the
+belief states where action <tt>a1</tt> is the best next action, and
+the green regions are where <tt>a2</tt> would be best. Now let's focus
+on the problem of finding the best value of a belief state <tt>b</tt>
+given that the first action is fixed to be <tt>a1</tt>. We will use
+the point shown in the figure below. <p>
+
+<center>
+<img src="figs/partition-point.gif">
+<h3>Belief point in transformed value function partitions</h3>
+</center>
+
+What we see from this figure is that if we start at the belief point
+<tt>b</tt>, do action <tt>a1</tt>, then the next action to do would be
+<tt>a1</tt> if we observer either <tt>z2</tt> or <tt>z3</tt> and
+action <tt>a2</tt> if we observe <tt>z1</tt>.  The figure above allows
+us to easily see what the best strategies are after doing action
+<tt>a1</tt>. If you recall that each of the partition regions actually
+corresponds to a line in the <tt>S()</tt> function, we can easily get
+the value of the belief point <tt>b</tt>. We take the immediate reward
+we get from doing action <tt>a1</tt> and add the value of the functions
+<tt>S(a1,z1),S(a1,z3), S(a1,z3)</tt> at belief point <tt>b</tt>. <p>
+
+In fact, if we fix the action to be <tt>a1</tt> and the future
+strategy to be the same as it is at point <tt>b</tt> (namely:
+<tt>z1:a2, z2:a1, z3:a1</tt>) we can find the value of every single
+belief point for that particular strategy.  To do this we simply sum
+all of the appropriate line segments.  We use the line segment for
+the immediate rewards of the <tt>a1</tt> action and the line segments
+from the <tt>S()</tt> functions for each observation's future
+strategy.  This gives us a single linear segment (since adding lines
+gives you lines) over all belief space representing the value of
+adopting the strategy of doing <tt>a1</tt> and the future strategy of
+<tt>(z1:a2, z2:a1, z3:a1)</tt>. The notation for the future strategies
+just indicates an action for each observation we can get. <p>
+
+We derived this particular future strategy from the belief point
+<tt>b</tt> and it is the best future strategy for that belief point.
+However, just because we can compute the value of this future strategy
+for each belief point, doesn't mean it is the best strategy for all
+belief points.  So which belief points is this the best future
+strategy?  This is actually easy to see from the partition
+diagram. <p>
+
+<center>
+<img src="figs/partition-point.gif">
+<h3>Belief point in transformed value function partitions</h3>
+</center>
+
+The region indicated with the red arrows shows all the belief points
+where the future strategy <tt>(z1:a2, z2:a1, z3:a1)</tt> is best
+(given that action <tt>a1</tt> is taken first).  Since there are three
+observations and two actions, there are a total of <tt>8</tt>
+different future strategies.  However, some of those strategies are
+not the best strategy for any belief points.  Given the partitioning
+figures, all the useful future strategies are easy to pick out.  For
+our example, there are only <tt>4</tt> useful future strategies.  The
+figure below shows these four strategies and the regions of belief
+space where each is the best future strategy. <p>
+
+<center>
+<img src="figs/horizon2-partition.gif">
+<h3>Partition for action a1</h3>
+</center>
+
+Each one of these regions corresponds to a different line segment in
+the value function for the action <tt>a1</tt> and horizon length
+<tt>2</tt>.  Each of these line segments is constructed as we
+indicated before by adding the immediate reward line segment to the
+line segments for each future strategy.  If we created the line
+segment for each of the four future strategies from the figure above,
+we would get a <tt>PWLC</tt> function that would impose exactly the
+partition shown above.  This value function is shown in this next
+figure. <p>
+
+<center>
+<img src="figs/horizon2-value-a1.gif">
+<h3>Value function and partition for action a1</h3>
+</center>
+
+Note that each one of these line segments represents a particular two
+action strategy.  The first action is <tt>a1</tt> for all of these
+segments and the second action depends upon the observation.  Thus we
+have solved our second problem; we now know how to find the value of a
+belief state for a fixed action.  In fact, as before, we have actually
+shown how to find this value for every belief state. <p>
+
+If there was only the action <tt>a1</tt> in our model, then the value
+function shown in the previous figure would be the horizon <tt>2</tt>
+value function.  However, because there is another action, we must
+compare the value of the other action with the value of action
+<tt>a1</tt> before we have the true horizon <tt>2</tt> value
+function, since we are interested in finding the best value for each
+belief state. <p>
+
+We can repeat the whole process we did for action <tt>a1</tt> for the
+other action.  This includes constructing the <tt>S()</tt> functions
+for the action <tt>a2</tt> and all the observations.  From these we
+can find the value function for that action.  Below is the value
+function and partition for action <tt>a2</tt>. <p>
+
+<center>
+<img src="figs/horizon2-value-a2.gif">
+<h3>Value function and partition for action a2</h3>
+</center>
+
+In this case there happens to be only two useful future strategies.
+We can put the value functions for each action together to see where
+each action gives the highest value. <p>
+
+<center>
+<img src="figs/horizon2-value-all.gif">
+<h3>Combined a1 and a2 value functions</h3>
+</center>
+
+We can see that from this picture that there is only one region where
+we would prefer to do action <tt>a2</tt>.  Everywhere else, this
+action is not as good as action <tt>a1</tt>.  We can see that one of
+the line segments from each of the two action value functions are not
+needed, since there are no belief points where it will yield a higher
+value than some other immediate action and future strategy.   Here is
+the more compact horizon <tt>2</tt> value function. <p>
+
+<center>
+<img src="figs/horizon2-value.gif">
+<h3>Value function for horizon 2</h3>
+</center>
+
+The partition shown below the value function in the figure above shows
+the best horizon <tt>2</tt> policy, indicating which action should be
+taken in each belief state. <p>
+
+This whole process took a long time to explain and is not nearly as
+complicated as it might seem.  We will show how to construct the
+horizon <tt>3</tt> policy from the horizon <tt>2</tt> policy is a
+slightly accelerated manner.  The steps are the same, but we can now
+eliminate a lot of the discussion and the intermediate steps which we
+used to aid the explanation. <p>
+
+First transform the horizon <tt>2</tt> value function for action
+<tt>a1</tt> and all the observations. <p>
+
+<center>
+<img src="figs/horizon2-value.gif">
+<h3>Value function for horizon 2</h3>
+</center>
+
+Note that each of the colors here corresponds to the same colored line
+in the horizon <tt>2</tt> value function.  When constructing the
+horizon <tt>2</tt> value function, these colors corresponded to the
+next action to take.  The reason the colors corresponded to a single
+action was that there was only going to be a single action left to
+take after taking the given action.  However, here and in general,
+each color represents a complete future strategy.  For instance, the
+magenta color corresponds to the line in the horizon <tt>2</tt> value
+function where we would do the action <tt>a2</tt> and adopt its future
+strategy.  The future strategy of the magenta line will depend on the
+observation we get after doing the <tt>a2</tt> action.<p>
+
+Next we find the value function by adding the immediate rewards and
+the <tt>S()</tt> functions for each of the useful strategies.  The
+partition that this value function will impose is easy to construct by
+simply looking at the partitions of the <tt>S()</tt> functions.<p>
+
+In the figure below, we show the <tt>S()</tt> partitions for action
+<tt>a1</tt> below and the value function for action <tt>a1</tt> with a
+horizon of <tt>3</tt>.  The partition this value function imposes is
+also shown. <p>
+
+<center>
+<img src="figs/horizon3-value-a1.gif">
+<h3>Value function for action a1 and horizon 3</h3>
+</center>
+
+Note that for this action, there are only 6 useful future strategies,
+which are represented by the partitions that this value function
+imposes on the belief space.<p>
+
+We then construct the value function for the other action, put them
+together and see which line segments we can get rid of.  Here are the
+<tt>S()</tt> function partitions, value function and the value
+functions partition for the action <tt>a2</tt>. <p>
+
+<center>
+<img src="figs/horizon3-value-a2.gif">
+<h3>Value function for action a2 and horizon 3</h3>
+</center>
+
+Note that there are only <tt>4</tt> useful future strategies for the
+action <tt>a2</tt>.  Here are the <tt>a1</tt> and <tt>a2</tt> value
+functions superimposed upon each other. <p>
+
+<center>
+<img src="figs/horizon3-value-all.gif">
+<h3>Value functions for both actions a2 and horizon 3</h3>
+</center>
+
+Note how many line segments get completely dominated by line segments
+from the other action's value function.  The final horizon <tt>3</tt>
+value function looks like this: <p>
+
+<center>
+<img src="figs/horizon3-value.gif">
+<h3>Value function for horizon 3</h3>
+</center>
+
+Note that this value function is much simpler than the individual
+action value functions. It is even simpler than the horizon <tt>2</tt>
+value function.  Whether the resulting function is simpler or more
+complex depends upon the particular problem.  These examples are meant
+to show how you can get either one; i.e., the value functions do not
+have to get more complex as we iterate through the horizons. <p>
+
+This concludes our example.  The concepts and procedures can be
+applied over and over to any horizon length.  This is the way we do
+value iteration on the <tt>CO-MDP</tt> derived from the
+<tt>POMDP</tt>.  <p>
+
+<CENTER><H2><a href="./pomdp-soln-form.html">Continue</a></H2></CENTER>
+
+<P>
+<CENTER><IMG SRC="images/oak-a-stripe.gif"></CENTER>
+<P>
+
+<CENTER><FONT SIZE="-1"><B>
+<A HREF="pomdp-solving.html">Back</A>
+| <A HREF="index.html">POMDP Tutorial</A>
+| <A HREF="pomdp-soln-form.html">Next</A>
+</B></FONT></CENTER>
+
+</BODY>
+</HTML>

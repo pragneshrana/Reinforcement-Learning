@@ -1,0 +1,67 @@
+<HTML>
+<HEADER>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (X11; I; Linux 2.1.123 i586) [Netscape]">
+   <META NAME="Author" CONTENT="Anthony R. Cassandra">
+   <META NAME="Keywords" CONTENT="POMDP, Markov, Planning, decision theory">
+   <TITLE>POMDPs for Dummies: Page 8</TITLE>
+</HEADER>
+<BODY TEXT="#F0F0F0" BGCOLOR="#003300" LINK="#F8D900" VLINK="#CCCCCC" ALINK="#00FF00">
+
+<CENTER><FONT SIZE="-1"><B>
+<A HREF="pomdp-soln-form.html">Back</A>
+| <A HREF="index.html">POMDP Tutorial</A>
+| <A HREF="sondik.html">Next</A>
+</B></FONT></CENTER>
+
+<P>
+<IMG SRC="images/brown-clear.gif" HEIGHT=111 WIDTH=102 ALIGN=LEFT>
+
+<CENTER><IMG SRC="images/oak-a-stripe.gif"></CENTER>
+
+<CENTER><H1>Sondik/Monahan's enumeration algorithm</H1></CENTER>
+
+<CENTER><IMG SRC="images/oak-a-stripe.gif"></CENTER>
+
+<P> How to generate a finite set of points so that we can construct
+all of the vectors in <tt>V'</tt> is the heart of the matter.
+However, the first algorithm we discuss generally ignores trying to
+find these points.  The idea is to simply generate all the possible
+vectors you could construct and was proposed by Monahan in 1982,
+though also mentioned by Sondik in 1971.  To construct a vector
+requires selection an action and a vector in <tt>V</tt> for each
+observation.  Thus we must generate a large number of vectors.  Many
+of these are not useful, since they are completely dominated by other
+vectors over the entire belief space.  We can eliminate the useless
+ones at the expense of some computing time, but regardless, just
+enumerating the vectors takes a long time even for some small
+problems.  As a side note, it is possible to construct a problem where
+everyone of those vectors enumerated is useful over some portion of
+belief space.  Thus, in the worst case, the general problem of one
+step of value iteration on a <tt>POMDP</tt> is very hard.  <p>
+
+The figure below shows what the Monahan algorithm does for each
+action.  For each observation it selects a vector from <tt>V</tt> and
+transforms the vectors and combines them to construct a potential
+vector for <tt>V'</tt>.  
+
+<center>
+<img src="figs/monahan.gif">
+<h3>Monahan's enumeration algorithm</h3>
+</center>
+
+<center><h2><a href="./sondik.html">Continue</a></h2></center>
+
+<P>
+<CENTER><IMG SRC="images/oak-a-stripe.gif"></CENTER>
+<P>
+
+<CENTER><FONT SIZE="-1"><B>
+<A HREF="pomdp-soln-form.html">Back</A>
+| <A HREF="index.html">POMDP Tutorial</A>
+| <A HREF="sondik.html">Next</A>
+</B></FONT></CENTER>
+
+
+</BODY>
+</HTML>

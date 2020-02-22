@@ -1,0 +1,211 @@
+<HTML>
+<HEADER>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (X11; I; Linux 2.1.123 i586) [Netscape]">
+   <META NAME="Author" CONTENT="Anthony R. Cassandra">
+   <META NAME="Keywords" CONTENT="POMDP, Markov, Planning, decision theory">
+   <TITLE>POMDPs for Dummies: Page 5</TITLE>
+</HEADER>
+<BODY TEXT="#F0F0F0" BGCOLOR="#003300" LINK="#F8D900" VLINK="#CCCCCC" ALINK="#00FF00">
+
+<CENTER><FONT SIZE="-1"><B>
+<A HREF="pomdp-background.html">Back</A>
+| <A HREF="index.html">POMDP Tutorial</A>
+| <A HREF="pomdp-vi-example.html">Next</A>
+</B></FONT></CENTER>
+
+<P>
+<IMG SRC="images/brown-clear.gif" HEIGHT=111 WIDTH=102 ALIGN=LEFT>
+
+<CENTER><IMG SRC="images/oak-a-stripe.gif"></CENTER>
+
+<CENTER><H1>Background on Solving POMDPs </H1></CENTER>
+
+<CENTER><IMG SRC="images/oak-a-stripe.gif"></CENTER>
+
+<P>
+In this section we finally start to get to the heart of the matter.
+We will start to introduce the graphical representation we use and
+then explain how we can use the value iteration algorithm to solve a
+<tt>POMDP</tt> problem.  Once this is established, we can delve into
+the particular algorithms that have been used to solve
+<tt>POMDP</tt>s. <p>
+
+In <tt>CO-MDP</tt>s our problem is to find a mapping from states to
+actions; in <tt>POMDP</tt>s our problem is to find a mapping from
+probability distributions (over states) to actions.  We will refer to
+a probability distribution over states as a belief state and the
+entire probability space (the set of all possible probability
+distributions) as the belief space.  <p>
+
+The figure below introduces how we will represent the belief space.
+To keep things as simple as possible, we will use a two state
+<tt>POMDP</tt> as our running example.  For a two state <tt>POMDP</tt>
+we can represent the belief state with a single number.  Since a
+belief state is a probability distribution, the sum of all
+probabilities must sum to <tt>1</tt>.  With a two state
+<tt>POMDP</tt>, if we are given the probability for being in one of
+the states as being '<tt>p</tt>', then we know that the probability of
+being in the other state must be '<tt>1-p</tt>'.  Therefore the entire
+space of belief states can be represented as a line segment.  The
+figure below shows this, though we have made the line segment have a
+significant width.   <p>
+
+<center>
+<img src="figs/belief-space.gif">
+<h3>1D belief space for a 2 state <tt>POMDP</tt></h3>
+</center>
+
+The thickness of this line will serve only to help clarify later
+explanations; the belief space is a single line segment.  The belief
+space is labeled with a <tt>0</tt> on the left and a <tt>1</tt> on the
+right.  This is the probability we are in state <tt>s1</tt>.  To the
+far left is the belief state where there is no chance that we are in
+state <tt>s1</tt>, which means that we are certain (probability =
+<tt>1</tt>) that we are in state <tt>s2</tt>.  The far right is when
+we are certain we are in state <tt>s1</tt> with no chance of being in
+state <tt>s2</tt>.  Note that although all of our examples use a two
+state problem, all of the insights directly apply for higher
+dimensional spaces; lines in these examples would become hyper-planes
+in higher dimensional examples. <p>
+
+Let us go back to the updating of the belief state discussed earlier.
+Assume we start with a particular belief state <tt>b</tt> and we take
+action <tt>a1</tt> and receive observation <tt>z1</tt> after taking
+that action.  Then our next belief state is fully determined.  In
+fact, since we are assuming that there are a finite number of actions
+and a finite number of observations, given a belief state, there are a
+finite number of possible next belief states.  These correspond to
+each combination of action and observation.  The figure below shows
+this process graphically for a <tt>POMDP</tt> with two states
+(<tt>s1</tt> and <tt>s2</tt>), two actions (<tt>a1</tt> and
+<tt>a2</tt>) and three observations (<tt>z1</tt>, <tt>z2</tt> and
+<tt>z3</tt>).  The starting belief state is the big yellow dot and the
+resulting belief states are the smaller black dots. The arcs represent
+the process of transforming the belief state. <p>
+
+<center>
+<img src="figs/belief-transform.gif">
+<h3>1D belief space for a 2 state <tt>POMDP</tt></h3>
+</center>
+
+Note that this shows all possible resulting belief states.  Since
+observations are probabilistic, each resulting belief state has a
+probability associated with it.  More clearly stated: if we take an
+action and get an observation, then we know with certainty what our
+next belief state is.  However, before we decide to take an action,
+each resulting belief state has a particular probability associated
+with it and there are as many possible next belief state as there are
+observations (for a given action).  Note that for a given action, the
+next belief state probabilities must sum to <tt>1</tt>. <p>
+
+It turns out that the process of maintaining the belief state is
+Markovian; the next belief state depends only on the current belief
+state (and the current action and observation).  In fact, we can
+convert a discrete <tt>POMDP</tt> problem into a continuous space
+<tt>CO-MDP</tt> problem where the continuous space is the belief
+space.  The transitions of this new continuous space <tt>CO-MDP</tt>
+are easily derived from the transition and observation probabilities
+of the <tt>POMDP</tt> (remember: no formulas here).  What this means
+is that we are now back to solving a <tt>CO-MDP</tt> and we can use
+the value iteration (VI) algorithm. However, we will need to adapt the
+algorithm some. <p>
+
+The big problem using value iteration here is the continuous state
+space.  In <tt>CO-MDP</tt> value iteration we simply maintain a table
+with one entry per state.  The value of each state is stored in the
+table and we have a nice finite representation of the value function.
+Since we now have a continuous space the value function is some
+arbitrary function over belief space.  The figure below shows a sample
+value function over belief space.  Here '<tt>b</tt>' is a belief space
+and the value function, '<tt>V(b)</tt>', is a function of
+'<tt>b</tt>'. Thus our first problem is how we can easily represent
+this value function. <p>
+
+<center>
+<img src="figs/fake-val-func.gif">
+<h3>Value function over belief space</h3>
+</center>
+
+Fortunately, the <tt>POMDP</tt> formulation imposes some nice
+restrictions on the form of the solutions to the continuous space
+<tt>CO-MDP</tt> that is derived from the <tt>POMDP</tt>.  The key
+insight is that the finite horizon value function is piecewise linear
+and convex (<tt>PWLC</tt>) for every horizon length.  This means that
+for each iteration of value iteration, we only need to find a finite
+number of linear segments that make up the value function.  <p>
+
+The figure below shows a sample value function over belief space for a
+POMDP.  It is the upper surface of a finite number of linear
+segments.  We have colored the segments for a reason to be explained
+later. <p>
+
+<center>
+<img src="figs/pwlc.gif">
+<h3>Sample PWLC value function</h3>
+</center>
+
+These linear segments will completely specify the value function (over
+belief space) that we desire.  These amount to nothing more than lines
+or, more generally, hyper-planes through belief space.  We can simply
+represent each hyper-plane with a vector of numbers, which are the
+coefficients of the equation of the hyper-plane.  The value at any
+given belief state is found by plugging in the belief state into the
+hyper-planes equation.  If we represent the hyper-plane as a vector
+(i.e., the equation coefficients) and each belief state as a vector
+(the probability at each state) then the value of a belief point is
+simply the dot product of the two vectors.  <p>
+
+We can now represent the value function for each horizon as a set of
+vectors.  To find the value of a belief state, we simply find the
+vector that has the largest dot product with the belief state. <p>
+
+Instead of linear segments over belief space, another way to view the
+function is that it partitions belief space into a finite number of
+segments.  We will be using both the value function and this
+partitioning representation to explain the algorithms. Keep in mind
+that they are more or less interchangeable. <p>
+
+<center>
+<img src="figs/pwlc-partition.gif">
+<h3>Sample PWLC function and its partition of belief space</h3>
+</center>
+
+Now let's return to the value iteration algorithm.  We have a
+continuous space <tt>CO-MDP</tt> and we were discussing adapting value
+iteration to this.  The first problem we encountered was how to
+represent a value function over a continuous space.  Since each
+horizon's value function is PWLC, we solved this problem, by
+representing the value function as a set of vectors (coefficients of
+the hyper-planes).  <p>
+
+Unfortunately, the continuous space causes us further problems.  In
+each iteration of value iteration in the discrete state space, we
+would find a state's new value by looping over all the possible next
+states.  However, for continuous state <tt>CO-MDP</tt>s it is
+impossible to enumerate all possible states (can you say "uncountably
+infinite"?). <p>
+
+This is the main obstacle that needs to be overcome and the specific
+algorithms described later are all different approaches to solve this
+difficulty. Once we overcome this difficulty, the problem is solved
+and value iteration works the same here as in the discrete
+<tt>CO-MDP</tt> case.  The problem now boils down to one stage of
+value iteration; given a set of vectors representing the value
+function for horizon '<tt>h</tt>', we just need to generate the set of
+vectors for the value function of horizon '<tt>h+1</tt>'<p>
+
+<center><h2><a href="./pomdp-vi-example.html">Continue</a></h2></center>
+
+<P>
+<CENTER><IMG SRC="images/oak-a-stripe.gif"></CENTER>
+<P>
+
+<CENTER><FONT SIZE="-1"><B>
+<A HREF="pomdp-background.html">Back</A>
+| <A HREF="index.html">POMDP Tutorial</A>
+| <A HREF="pomdp-vi-example.html">Next</A>
+</B></FONT></CENTER>
+
+</BODY>
+</HTML>

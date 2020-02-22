@@ -1,0 +1,159 @@
+<HTML>
+<HEADER>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (X11; I; Linux 2.1.123 i586) [Netscape]">
+   <META NAME="Author" CONTENT="Anthony R. Cassandra">
+   <META NAME="Keywords" CONTENT="POMDP, Markov, Planning, decision theory">
+   <TITLE>POMDPs for Dummies: Page 9</TITLE>
+</HEADER>
+<BODY TEXT="#F0F0F0" BGCOLOR="#003300" LINK="#F8D900" VLINK="#CCCCCC" ALINK="#00FF00">
+
+<CENTER><FONT SIZE="-1"><B>
+<A HREF="monahan.html">Back</A>
+| <A HREF="index.html">POMDP Tutorial</A>
+| <A HREF="cheng.html">Next</A>
+</B></FONT></CENTER>
+
+<P>
+<IMG SRC="images/brown-clear.gif" HEIGHT=111 WIDTH=102 ALIGN=LEFT>
+
+<CENTER><IMG SRC="images/oak-a-stripe.gif"></CENTER>
+
+<center><h1>Sondik's One-Pass Algorithm</h1></center>
+
+<CENTER><IMG SRC="images/oak-a-stripe.gif"></CENTER>
+
+<P>
+The next algorithm we discuss was actually the first exact
+<tt>POMDP</tt> algorithm proposed and is due to Sondik (1971).  This
+algorithm starts with an arbitrary belief point, constructs the vector
+for that point and then defines a set of constraints over the belief
+space where this vector is guaranteed to be dominant.  <p>
+
+The region defined is actually the intersection of three easier to
+describe regions.  When we construct a vector from a belief point
+<tt>b</tt> we know what is the strategy that vector represents. This
+strategy is the best one for that belief point and some nearby belief
+points.  However, it might not be the best strategy for all belief
+points.  There are two ways that this strategy might not be the best
+strategy: either the immediate action doesn't change and the future
+strategy changes; or another action might become better.  The first
+region assures that even if the best action doesn't change, the future
+course of action doesn't change either.  <p>
+
+<center>
+<img src="figs/sondik1.gif">
+<h3>Sondik's first region</h3>
+</center>
+
+The second region assures that the best vector for the current action
+is not exceeded by each of the current best vectors for each of the
+other actions.  This says that even though some action <tt>a'</tt>
+and future course of action isn't as good as <tt>a</tt> at the point
+<tt>b</tt>, there could be a very close point where that action and
+course of action becomes better.  <p>
+
+<center>
+<img src="figs/sondik2-1.gif">
+<h3>Sondik's second region</h3>
+</center>
+
+Finally, it may be that <tt>a_1</tt> and a future course of action
+will never be better that the current best action and its best future
+course of action. However, <tt>a_1</tt> and another course of action
+may become better than the current best action and its course of
+action.  We need to restrict the region to incorporate this.  We do
+this be defining the limits of each action's best region.  <p>
+
+The figure below shows the value function for action <tt>a</tt> and
+the first region we defined above. <p>
+
+<center>
+<img src="figs/sondik2-2.gif">
+<h3>Sondik's first region and value function</h3>
+</center>
+
+We now superimpose the value for the other action (shown in dashed
+lines). <p>
+
+<center>
+<img src="figs/sondik2-2.gif">
+<h3>Sondik's second region</h3>
+</center>
+
+The dashed red line is the best vector for this other action at belief
+point <tt>b</tt>, but it is not as good at the belief point
+<tt>b</tt>.  Note that there are belief states where this vector is
+better.  This second set of constraints assures that we restrict
+ourselves to the region where the current best action remains the best
+action. You can see from the picture that the first region by itself
+would include points where the solid red line vector was not the best
+value attainable. <p>
+
+The dashed red line represents a particular future strategy for the
+non-optimal action.  In other words, the best strategy to do if we
+were force to take that action first.  The above region makes sure we
+restrict ourselves to belief points where this strategy is not better
+than what we have at belief point <tt>b</tt>.  However, 
+The final region is for the case where not only does the best action
+change, but the best strategy for that other action changes from what
+is the current best strategy.  The dashed red line only shows part of
+the story for what is happening for the other action.  We know that
+the dashed red line represents the best future strategy for that
+action at point <tt>b</tt>, but we know nothing about other future
+strategies for that action.  <p>
+
+To ensure that we restrict ourselves to belief points where the action
+and future strategy doesn't change, we need to include the region
+where the dashed red line is the best strategy for the other action.
+This figure shows all the different strategies for the other action,
+though there are only two in this example.  <p>
+
+<center>
+<img src="figs/sondik3.gif">
+<h3>Sondik's third region</h3>
+</center>
+
+The region where the red dashed line dominates the blue dashed line is
+the third region.  The intersection of the three regions is the
+region where we are assured that the solid red vector is the best one.
+However, note that we are being too restrictive here.  The points to
+the left of <tt>b</tt> still have the solid red vector as the best
+one.  But because of the third region we cannot include those in the
+region. <p>
+
+The following figure shows the complete region that is imposed by
+Sondik's one-pass algorithm. It is the intersection of the three
+regions previously described.
+
+<center>
+<img src="figs/sondik-region.gif">
+<h3>Complete Sondik region</h3>
+</center>
+
+With this region defined we can use linear programming to find a point
+on the edge of this region.  The useful part of this point is that it
+also lies on the boundary of a region adjacent to the current region.
+In effect, it gives us a point in another region.  <p>
+
+Unfortunately, the regions defined by Sondik's algorithm are extremely
+conservative.  These are not guaranteed to be the complete region
+where the vector is dominant as we saw in the last figure.  Thus we
+might find that we generate the same vector for many belief points.
+<p>
+
+<center><h2><a href="./cheng.html">Continue</a></h2></center>
+
+<P>
+<CENTER><IMG SRC="images/oak-a-stripe.gif"></CENTER>
+
+<P>
+<CENTER><FONT SIZE="-1"><B>
+<A HREF="monahan.html">Back</A>
+| <A HREF="index.html">POMDP Tutorial</A>
+| <A HREF="cheng.html">Next</A>
+</B></FONT></CENTER>
+
+
+</BODY>
+</HTML>

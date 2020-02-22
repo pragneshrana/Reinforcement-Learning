@@ -1,0 +1,90 @@
+<HTML>
+<HEADER>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (X11; I; Linux 2.1.123 i586) [Netscape]">
+   <META NAME="Author" CONTENT="Anthony R. Cassandra">
+   <META NAME="Keywords" CONTENT="POMDP, Markov, Planning, decision theory">
+   <TITLE>POMDPs for Dummies: Page 3</TITLE>
+</HEADER>
+<BODY TEXT="#F0F0F0" BGCOLOR="#003300" LINK="#F8D900" VLINK="#CCCCCC" ALINK="#00FF00">
+
+<CENTER><FONT SIZE="-1"><B>
+<A HREF="mdp.html">Back</A>
+| <A HREF="index.html">POMDP Tutorial</A>
+| <A HREF="pomdp-background.html">Next</A>
+</B></FONT></CENTER>
+
+<P>
+<IMG SRC="images/brown-clear.gif" HEIGHT=111 WIDTH=102 ALIGN=LEFT>
+
+<P>
+<CENTER><IMG SRC="images/oak-a-stripe.gif" HEIGHT=5 WIDTH=490>
+</CENTER>
+
+<CENTER><h1>Brief Introduction to the Value Iteration
+Algorithm</h1></CENTER>
+
+<P>
+<CENTER><IMG SRC="images/oak-a-stripe.gif" HEIGHT=5 WIDTH=490>
+</CENTER>
+
+<P>
+With <tt>MDP</tt>s we have a set of states, a set of actions to choose
+from, and immediate reward function and a probabilistic transition
+matrix.  Our goal is to derive a mapping from states to actions, which
+represents the best actions to take for each state, for a given
+horizon length.  This is easy if we know the value of each state for
+this horizon length.  The value iteration algorithm computes this
+value function by finding a sequence of value functions, each one
+derived from the previous one.<p>
+
+The value iteration algorithm starts by trying to find the value
+function for a horizon length of <tt>1</tt>.  This will be the value
+of each state given that we only need to make a single decision.
+There isn't much to do to find this in an <tt>MDP</tt>.  Recall that
+we have the immediate rewards, which specify how good each action is
+in each state. Since our horizon length is <tt>1</tt>, we do not need
+to consider any future effects (there is no future).  Thus, we can
+simply look at the immediate rewards and choose the action with the
+highest immediate value for each state.<p>
+
+The next step, which is the second iteration of the algorithm, is to
+determine the value function for a horizon length of <tt>2</tt>.  The
+value of acting when there are two steps to go, is the immediate
+rewards for the immediate action you will take, plus the value of the
+next action you choose.  Conveniently, we have already computed the
+values of each state for a horizon length of <tt>1</tt>.  So to find
+the value for horizon <tt>2</tt>, we can just add the immediate
+effects of each of the possible actions to the already computed value
+function to find the action with the best value given that there will
+be two decision to be made.<p>
+
+Now the algorithm iterates again; it finds the horizon <tt>3</tt>
+value function using the horizon <tt>2</tt> value function.  This
+iterates until we have found the value function for the desired
+horizon.<p>
+
+We could give the formula for how to calculate one value function from
+another, but we promised there would be no formulas.  All we will say
+is that it involves iterating over all the states and using the
+transition probabilities to weight the values.  Anyway, the formulas
+can be found most anywhere people talk about <tt>MDP</tt>s, so just be
+content that it is easy to derive one value function from another by
+iterating over the states.
+
+<P>
+<CENTER><H2><a href="./pomdp-background.html">Continue</a></H2></CENTER>
+
+<P>
+<CENTER><IMG SRC="images/oak-a-stripe.gif">
+</CENTER>
+
+<P>
+<CENTER><FONT SIZE="-1"><B>
+<A HREF="mdp.html">Back</A>
+| <A HREF="index.html">POMDP Tutorial</A>
+| <A HREF="pomdp-background.html">Next</A>
+</B></FONT></CENTER>
+
+</BODY>
+</HTML>
