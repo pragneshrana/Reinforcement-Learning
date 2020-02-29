@@ -54,4 +54,5 @@ for i in range(n_game):
 
 plt.plot(win_pct)
 plt.show()
+print(env.registry.all())
 
