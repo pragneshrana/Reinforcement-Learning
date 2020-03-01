@@ -6,11 +6,11 @@ import gym
 env = gym.make('FrozenLake-v0')
 
 
-n_game = 1000	#total number of episodes 
-win_pct = []	#win percentage
+n_games = 1000	#total number of episodes 
+win_pc = []	#win percentage
 scores = []	#score after each play 
 
-for i in range(n_game):
+for i in range(n_games):
 	done = False
 	obs = env.reset()	
 	score = 0
@@ -50,9 +50,8 @@ for i in range(n_game):
 
 	if i % 10 == 0: #after every 10 games keep track of reward 
 		average = np.mean(scores[-10:])
-		win_pct.append(average)
+		win_pc.append(average)
 
-plt.plot(win_pct)
+plt.plot(win_pc)
 plt.show()
-print(env.registry.all())
 
