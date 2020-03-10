@@ -61,9 +61,11 @@ class GridWorld(gym.Env):
         self.first_time = True
         # self._my_init
 
+
     # Calling to load Map
     def _my_init(self, mapname):
         this_file_path = os.path.dirname(os.path.realpath(__file__))
+        print('this_file_path: ', this_file_path)
         self.file_name = os.path.join(this_file_path, mapname)
         with open(self.file_name, "r") as f:
             for i, row in enumerate(f):
