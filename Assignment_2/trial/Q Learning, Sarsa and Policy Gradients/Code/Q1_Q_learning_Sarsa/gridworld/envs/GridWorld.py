@@ -1,25 +1,25 @@
 # Taken some reference & idea from below github soucre: Some GridWorld environments for OpenAI Gym
 # https://github.com/opocaj92/GridWorldEnvs 
 
-import gym
-from gym import error, spaces, utils
-from gym.utils import seeding
-import math
+#importing libraries 
 import numpy as np
-from PIL import Image
-import os
+import matplotlib.pyplot as plt
 import sys
-from PIL import Image as Image
+import os
+import math 
+import gym
 import matplotlib
 matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
 
-# Defining actions
-UP = 0
-RIGHT = 1
-DOWN = 2
-LEFT = 3
-# define colors
+from gym import error, spaces, utils
+from gym.utils import seeding
+from PIL import Image
+from PIL import Image as Image
+
+
+
+
+#colors are defined for rendering 
 # 0: black; 1 : gray; 2 : blue; 3 : green; 4 : red
 COLORS = {0: [1.0, 1.0, 1.0], 4: [0.5, 0.5, 0.5],
           -1: [0.0, 0.0, 1.0], -2: [0.0, 1.0, 0.0],
@@ -27,12 +27,19 @@ COLORS = {0: [1.0, 1.0, 1.0], 4: [0.5, 0.5, 0.5],
           -13: [0.5, 0.0, 0.5], 1: [0.0, 0.0, 0.0], 10: [1, 0.6, 0.4]}
 
 
+#Actions defined 
+UP = 0
+RIGHT = 1
+DOWN = 2
+LEFT = 3
+
 class GridWorld(gym.Env):
     metadata = {'render.modes': ['human']}
 
     def __init__(self, terminal_reward=10.0,
                  move_reward=0, puddle1_reward=-1.0,
                  puddle2_reward=-2.0, puddle3_reward=-3.0, westerly_wind=True):
+        #intializing values 
         self.n = None
         self.m = None
         self.bombs = []
