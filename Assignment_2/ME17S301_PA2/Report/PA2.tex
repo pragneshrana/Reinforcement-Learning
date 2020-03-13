@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[addpoints,12pt,solution]{exam}
-
+%\documentclass[addpoints,12pt,solution]{exam}
+\documentclass[preprint,12pt]{elsarticle}
 %% Use the option review to obtain double line spacing
 
 %% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
@@ -53,7 +53,7 @@
 \usetikzlibrary{shapes,arrows,chains}
 \usetikzlibrary[calc]
 \usepackage{graphicx}
-\graphicspath{ {./plotting_files/} }
+\graphicspath{ {./images/} }
 
 \usepackage{geometry}
 \geometry{lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in}
@@ -138,7 +138,7 @@
 %%
 %% \biboptions{comma,round}
 % \biboptions{}
-
+\usepackage{caption}
 \usepackage{caption}
 \usepackage{algorithm} 
 \usepackage[noend]{algpseudocode}
@@ -178,19 +178,14 @@
 
 \begin{itemize}\itemsep0mm
 \item Part-A is on Puddle GridWorld
-\item Part-B is about 
+\item Part-B is about Policy Gradient Implementation 
 \end{itemize}
 }
-
 \hrule
-
 \vspace{3mm}
+newpage
 
 
-
-
-
-\newpage
 %%
 %% Following citation commands can be used in the body text:
 %% Usage of \cite is as follows:
@@ -198,6 +193,85 @@
 %%   \cite{key}          ==>>  [#]
 %%   \cite[chap. 2]{key} ==>>  [#, chap. 2]
 %%   \citet{key}         ==>>  Author [#]
+
+\section{Puddle World:}
+
+ Puddle world has been implemented with different maps. Map-A and Map-B has different terminal states whereas, Map-C has westerly wind blowing which forces the agent to move in east with 0.5 probability. The grid world has puddle in the centre. each state in the world is denoted by different colours. 
+
+Penalty/reward given to the agent varies based on state and transition.  For every transition from one state to another 0 reward is given. In the puddle zone, blue area gives reward of -1 likewise as inside penalty increases. Green and red gives -2, -3 respectively. Puddle world is stochastic in nature. It takes correct action with probability 0.9 where as other action are taken with 0.033 probability equally.Pink shows the terminal state which gives reward of +10 as shown in fig:\ref{fig:puddle}.
+
+\begin{figure}[H]
+	\centering  
+	\subfigure[Puddle World-A]
+	{\includegraphics[width=0.35\linewidth]{./Puddle_A.png}}
+	\subfigure[Puddle World-B]
+	{\includegraphics[width=0.35\linewidth]{./Puddle_B.png}}
+	\subfigure[Puddle World-C]
+	{\includegraphics[width=0.35\linewidth]{./Puddle_C.png}}
+	\caption{Puddle World with different colour: Grey:Start, Pink:Terminal, Middle:Puddle }
+	\label{fig:puddle}
+\end{figure}
+
+In Puddle World-C, westerly wind also blowing which forces the agent to move in east direction with probability of 0.5. Suppose agent wanted to go in desired state s' with probability 0.9 and reward will be -1 due to transition but due to wind it may happen that agent may end up in the another state s'' with probability 0.5 and assume such state has higher negative reward then wind misguides the agent.
+
+\subsection{Q-learning:}
+The goal is to reach the terminal state with highest possible reward. ran the code for 500 episodes and average steps and return has been computed for 50 runs. 
+For each case discount rate $\gamma$ is taken as 0.9, learning rare $\alpha$ is taken as 0.1 and exploration parameter is taken as $\epsilon$= 0.1. 
+
+Epsilon-greedy policy has been used for the exploration. Initially the epsilon was set as 0.1 but as it takes may steps to compute the terminal state. so epsilon value has been boosted to 0.2 . 
+
+\begin{figure}[H]
+	\centering  
+	\subfigure[Puddle World-A]
+	{\includegraphics[width=0.43\linewidth]{./QAvg_steps_A500.png}}
+	\subfigure[Puddle World-B]
+	{\includegraphics[width=0.43\linewidth]{./QAvg_steps_B500.png}}
+	\subfigure[Puddle World-C]
+	{\includegraphics[width=0.43\linewidth]{./QAvg_steps_C500.png}}
+	\caption{Average steps taken by the agent in different world}
+	\label{fig:stepsQ}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering  
+	\subfigure[Puddle World-A]
+	{\includegraphics[width=0.4\linewidth]{./QReturn_A500.png}}
+	\subfigure[Puddle World-B]
+	{\includegraphics[width=0.4\linewidth]{./QReturn_B500.png}}
+	\subfigure[Puddle World-C]
+	{\includegraphics[width=0.4\linewidth]{./QReturn_C500.png}}
+	\caption{Average return per episode obtained by the agent in different world}
+	\label{fig:returnQ}
+\end{figure}
+
+From the fg:\ref{fig:combiQ}, it clear that for initial few episodes agent takes longer time to reach the goal. 
+\begin{itemize}
+\item 
+nd{itemize}
+
+\begin{figure}[H]
+	\centering  
+	\subfigure[Average steps]
+	{\includegraphics[width=0.4\linewidth]{./Qcombine_plot_of_avg_steps500.png}}
+	\subfigure[Average return]
+	{\includegraphics[width=0.4\linewidth]{./Qcombine_plot_of_avg_return500.png}}
+	\caption{Combine plot of average return and average steps for different world}
+	\label{fig:combiQ}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering  
+	\subfigure[Optimal Policy - A]
+	{\includegraphics[width=0.4\linewidth]{./QPuddle_World_A_Arrows.png}}
+	\subfigure[Optimal Policy - B]
+	{\includegraphics[width=0.4\linewidth]{./QPuddle_World_B_Arrows.png}}
+	\subfigure[Optimal Policy - C]
+	{\includegraphics[width=0.4\linewidth]{./QPuddle_World_C_Arrows.png}}
+	\caption{Optimal Policy obtained after learning}
+	\label{fig:combiQ}
+\end{figure}
 
 %% References with bibTeX database:
 \bibliographystyle{ieeetr}
