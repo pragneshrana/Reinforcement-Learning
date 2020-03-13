@@ -16,14 +16,20 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
 
-pklfiles = ['QL_PuddleAQ500.pkl', 'QL_PuddleBQ500.pkl', 'QL_PuddleCQ500.pkl']
-mapFiles = ["map1.txt", "map2.txt", "map3.txt"]
-figuretitle = ['Q Learning Puddle World Problem A',
-               'Q Learning Puddle World Problem B', 'Q Learning Puddle World Problem C']
-plotsave = ['QL_Avg_steps_A_', 'QL_Avg_steps_B_', 'QL_Avg_steps_C_']
-problemis = ["A", "B", "C"]
-moviefilename = ["QL_movieA", "QL_movieB", "QL_movieC"]
+# pklfiles = ['QL_PuddleAQ500.pkl', 'QL_PuddleBQ500.pkl', 'QL_PuddleCQ500.pkl']
+# mapFiles = ["map1.txt", "map2.txt", "map3.txt"]
+# figuretitle = ['Q Learning Puddle World Problem A',
+#                'Q Learning Puddle World Problem B', 'Q Learning Puddle World Problem C']
+# plotsave = ['QL_Avg_steps_A_', 'QL_Avg_steps_B_', 'QL_Avg_steps_C_']
+# problemis = ["A", "B", "C"]
+# moviefilename = ["QL_movieA", "QL_movieB", "QL_movieC"]
 
+pklfiles = ['QL_PuddleCQ500.pkl']
+mapFiles = ["map3.txt"]
+figuretitle = ['Q Learning Puddle World Problem C']
+plotsave = ['QL_Avg_steps_C_']
+problemis = ["C"]
+moviefilename = ["QL_movieC"]
 
 # Creates epsilon greedy policy
 def epsilon_greedy_policy(Q, epsilon, nA):
@@ -193,7 +199,7 @@ for grids in range(3):
     env.reset()
     env.first_time = False
 
-    Q = q_learning(env, num_episodes=num_episodes, iterations=iterations,gamma=0.9, alpha=0.1, epsilon=0.1)
+    Q = q_learning(env, num_episodes=num_episodes, iterations=iterations,gamma=0.9, alpha=0.1, epsilon=0.3)
 
 
 

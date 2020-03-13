@@ -1,0 +1,207 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[addpoints,12pt,solution]{exam}
+
+%% Use the option review to obtain double line spacing
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn]{elsarticle}
+%% \documentclass[final,3p,times]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn]{elsarticle}
+%% \documentclass[final,5p,times]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn]{elsarticle}
+
+%% The graphicx package provides the includegraphics command.
+\usepackage{graphicx}
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{breqn}
+\usepackage{chemfig}
+\usepackage{csvsimple}
+%% The amsthm package provides extended theorem environments
+%% \usepackage{amsthm}
+
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers after \end{frontmatter}.
+\usepackage{lineno}
+\usepackage{natbib}
+\usepackage{hyperref}
+% \usepackage[top=0.75in, bottom=0.75in, left=0.55in, right=0.85in]{geometry}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{palatino}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{rotating}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{mathrsfs}
+\usepackage{xfrac}
+\usepackage[font=small,skip=0pt]{caption}
+%\usepackage[numbers,sort&compress]{natbib}
+%\usepackage{hyperref}
+\usepackage{pgf,tikz}
+\usetikzlibrary{shapes,arrows,chains}
+\usetikzlibrary[calc]
+\usepackage{graphicx}
+\graphicspath{ {./plotting_files/} }
+
+\usepackage{geometry}
+\geometry{lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in}
+\usepackage{lipsum}
+%\pagestyle{empty}
+\usepackage{natbib}
+\pagenumbering{arabic}
+%\usepackage[T1]{fontenc}
+\usepackage{setspace}
+\usepackage{mathptmx}
+\usepackage{t1enc}
+%\usepackage{xkeyval}
+%\usepackage{chemformula}
+%\usepackage{array}
+%\usepackage{booktabs}
+%\usepackage{hypdoc}
+%\usepackage{listings}
+%\usepackage{lmodern}
+%\usepackage{mathpazo}
+%\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{rotating}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{xfrac}
+\usepackage[font=small,skip=0pt]{caption}
+%\usepackage[numbers,sort&compress]{natbib}
+%\usepackage{hyperref}
+\usepackage{pgf,tikz}
+\usetikzlibrary{shapes,arrows,chains}
+\usetikzlibrary[calc]
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in}
+\usepackage{lipsum}
+%\pagestyle{empty}
+\usepackage{natbib}
+\pagenumbering{arabic}
+%\usepackage[T1]{fontenc}
+\usepackage{setspace}
+\usepackage{mathptmx}
+\usepackage{t1enc}
+%\usepackage{xkeyval}
+%\usepackage{chemformula}
+%\usepackage{array}
+%\usepackage{booktabs}
+%\usepackage{hypdoc}
+%\usepackage{listings}
+%\usepackage{lmodern}
+%\usepackage{mathpazo}
+%\usepackage{microtype}
+\usepackage{lineno,hyperref}
+\usepackage{multirow}
+\usepackage{cancel}
+\usepackage{url}
+\usepackage[norule]{footmisc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\hypersetup{colorlinks = true,linkcolor = blue,urlcolor = blue}
+% \fontfamily{SansSerif}
+% \selectfont
+% \usepackage[T1]{fontenc}
+% \usepackage
+%% natbib.sty is loaded by default. However, natbib options can be
+%% provided with \biboptions{...} command. Following options are
+%% valid:
+%%   round  -  round parentheses are used (default)
+%%   square -  square brackets are used   [option]
+%%   curly  -  curly braces are used      {option}
+%%   angle  -  angle brackets are used    <option>
+%%   semicolon  -  multiple citations separated by semi-colon
+%%   colon  - same as semicolon, an earlier confusion
+%%   comma  -  separated by comma
+%%   numbers-  selects numerical citations
+%%   super  -  numerical citations as superscripts
+%%   sort   -  sorts multiple citations according to order in ref. list
+%%   sort&compress   -  like sort, but also compresses numerical citations
+%%   compress - compresses without sorting
+%%
+%% \biboptions{comma,round}
+% \biboptions{}
+
+\usepackage{caption}
+\usepackage{algorithm} 
+\usepackage[noend]{algpseudocode}
+\usepackage{amsmath}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+\newcommand*{\argminl}{\argmin\limits}
+\newcommand*{\argmaxl}{\argmax\limits}
+
+
+
+\begin{document}
+
+
+\hrule
+\vspace{1mm}
+\noindent 
+\begin{center}
+{\Large CS6700 : Reinforcement Learning} \\
+
+{\large Programming Assignment Report-1} \\
+{\large Control Algorithms   \hfill }
+\end{center}
+\vspace{1mm}
+\noindent 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Enter name and roll number here
+\noindent {\bf Name:} Pragnesh Rana \hfill {\bf Roll number:} ME17S301
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{2mm}
+\hrule
+
+{\small
+
+\begin{itemize}\itemsep0mm
+\item Part-A is on Puddle GridWorld
+\item Part-B is about 
+\end{itemize}
+}
+
+\hrule
+
+\vspace{3mm}
+
+
+
+
+
+\newpage
+%%
+%% Following citation commands can be used in the body text:
+%% Usage of \cite is as follows:
+
+%%   \cite{key}          ==>>  [#]
+%%   \cite[chap. 2]{key} ==>>  [#, chap. 2]
+%%   \citet{key}         ==>>  Author [#]
+
+%% References with bibTeX database:
+\bibliographystyle{ieeetr}
+\bibliography{biblio.bib}		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%THE END%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
