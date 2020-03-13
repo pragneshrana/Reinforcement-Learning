@@ -5,9 +5,9 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import numpy as np
 
-xlist = np.linspace(-1.0, 1.0, 100)
-ylist = np.linspace(-1.0, 1.0, 100)
-X, Y = np.meshgrid(xlist, ylist)
+x_values = np.linspace(-1.0, 1.0, 100)
+y_values = np.linspace(-1.0, 1.0, 100)
+X, Y = np.meshgrid(x_values, y_values)
 Z = (.5*X**2 + 5*Y**2)
 # print(Z)
 

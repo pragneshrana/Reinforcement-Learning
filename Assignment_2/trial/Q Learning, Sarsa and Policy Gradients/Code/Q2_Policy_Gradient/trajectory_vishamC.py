@@ -5,17 +5,16 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import numpy as np
 
-xlist = np.linspace(-1.0, 1.0, 100)
-ylist = np.linspace(-1.0, 1.0, 100)
-X, Y = np.meshgrid(xlist, ylist)
+#generating mesh grids
+x_values = np.linspace(-1.0, 1.0, 100)
+y_values = np.linspace(-1.0, 1.0, 100)
+X, Y = np.meshgrid(x_values, y_values)
 Z = (.5*X**2 + 5*Y**2)
-# print(Z)
 
-
+#ploting figures
 plt.figure()
 cp = plt.contour(X, Y, Z)
-plt.clabel(cp, inline=True,
-           fontsize=10)
+plt.clabel(cp, inline=True,fontsize=10)
 for i in range(15):
     tmp = np.load("vishamC_traj_"+str(i)+".npy")
     x = []
