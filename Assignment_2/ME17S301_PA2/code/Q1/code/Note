@@ -1,0 +1,7 @@
+This folder is empty.
+Which useful if you are going to simulate the code here.
+
+All the result are in the ./result folder
+
+run:
+python SimulateGridWorld.py -s '{either QL/SARSA/SARSA_LAMBDA}'

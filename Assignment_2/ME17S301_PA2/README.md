@@ -26,7 +26,7 @@ method_type = {QL, SARSA, SARSA_LAMBDA}
 
 
 # Description of the Policy Gradient :
-For Policy Gradient , Initial task is to implement the chakra and vishamC world. The main differnece between two world is reward function. using both environment rollout and policy gradient has been implemeted.
+For Policy Gradient , Initial task is to implement the chakra and vishamC world. The main differnece between two world is reward function. using both environment rollout and policy gradient has been implemeted. All the fucntion are implemented in policy_gradient.py file.
 
 # Simulate using Policy Gradient:
 Run command below,
@@ -38,20 +38,26 @@ environmentID = {chakra, vishamC}
 # File Directory:
 -ME17S301PA2
 
--- CODE
+-- Solution
 --- Q1_Q_learning_Sarsa
+---- code
 ------ gridworld
 ------ SimulateGridWorld.py
+---- result
 ------ QL_result
 ------ SARSA_result
 ------ SARSA_LAMBDA_result
 ------ Trained_Agent_VIDEO
+
+
 --- Q2_Policy_Gradient
+---- code
 ------ Policy_result
 ------ policy_gradient.py
 ------ rlpa2
 ---------- chakra.py
 ---------- vishamC.py
+---- result
 
 
 -- Report_ME17S301_PA2.pdf
