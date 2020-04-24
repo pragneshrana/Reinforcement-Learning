@@ -1,0 +1,138 @@
+\documentclass[solution,addpoints,12pt]{exam}
+\printanswers
+\usepackage{amsmath,amssymb}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue]{hyperref}
+\newcommand{\RP}{\ensuremath{\mathsf{RP}}}
+\newcommand{\expect}[1]{\ensuremath{\mathbb{E}[#1]}}
+\newcommand{\dx}{\mathrm{d}x}
+\usepackage{graphicx}
+\begin{document}
+
+\hrule
+\vspace{1mm}
+\noindent 
+\begin{center}
+{\Large CS6700 : Reinforcement Learning} \\
+{\large Written Assignment \#2}
+\end{center}
+%\hfill Release date: 21 Jan, 2017, 12:00 pm}
+\vspace{1mm}
+\noindent 
+{Deadline: ?}
+
+\vspace{2mm}
+\hrule
+
+{\small
+
+\begin{itemize}\itemsep0mm
+\item This is an individual assignment. Collaborations and discussions are strictly
+prohibited.
+\item Be precise with your explanations. Unnecessary verbosity will be penalized.
+\item Check the Moodle discussion forums regularly for updates regarding the assignment.
+\item \textbf{Please start early.}
+
+\end{itemize}
+}
+
+\hrule
+
+\vspace{3mm}
+\noindent {\sc Author :} Name. \\[1mm]
+\noindent {\sc Roll Number :} \\
+\hrule
+
+
+\begin{questions}
+\question[3]
+Consider a bandit problem in which the policy parameters are mean $ \mu$ and variance $\sigma$ of normal distribution according to which actions are selected. Policy is defined as $ \pi(a;\mu,\sigma^2) = \frac{1}{\sqrt{2\pi\sigma}}e^-\frac{(a-\mu)^2}{2\sigma^2}$. Derive the parameter update conditions according to the REINFORCE procedure (assume baseline is zero).
+
+\begin{solution}
+
+
+\end{solution}
+\question[6]
+ Let us consider the effect of approximation on policy search and value function based methods. Suppose that a policy gradient method uses a class of policies that do not contain the optimal policy; and a value function based method uses a function approximator that can represent the values of the policies of this class, but not that of the optimal policy.
+ \begin{enumerate}[label=(\alph*)]
+     \question[2]  Why would you consider the policy gradient approach to be better than the value function based approach?
+     \begin{solution}
+     
+     \end{solution}
+     \question[2]  Under what circumstances would the value function based approach be better than the policy gradient approach?
+     \begin{solution}
+     
+     \end{solution}
+     \question[2]  Is there some circumstance under which either of the method can find the optimal policy?
+     \begin{solution}
+     
+     \end{solution}
+ 
+ \end{enumerate}
+ 
+
+\question[4] Answer the following questions with respect to the DQN algorithm:
+\begin{itemize}
+    \question [2] When using one-step TD backup, the TD target is $R_{t+1}+\gamma V(S_{t+1},\theta)$ and the update to the neural network parameter is as follows:\\
+    \begin{equation}
+        \Delta \theta=\alpha(R_{t+1}+\gamma V(S_{t+1},\theta)-V(S_{t},\theta))\nabla_{\theta}V(S_{t},\theta)
+    \end{equation}
+    Is the update correct ? Is any term missing ? Justify your answer
+    \begin{solution}
+    
+    \end{solution}
+    \question [2] Describe the two ways discussed in class to update the parameters of target network. Which one is better and why?
+    \begin{solution}
+    
+    \end{solution}
+\end{itemize}
+
+\question[4] Experience replay is vital for stable training of DQN.
+\begin{parts}
+    \part[2] What is the role of the experience replay in DQN?
+    \begin{solution}
+    
+    \end{solution}
+    \part[2] Consequent works in literature sample transitions from the experience replay, in proportion to the TD-error. Hence, instead of sampling transitions using a uniform-random strategy, higher TD-error transitions are sampled at a higher frequency. Why would such a modification help?
+    \begin{solution}
+    
+    \end{solution}
+\end{parts}
+
+\question[3] We discussed two different motivations for actor-critic algorithms: the original motivation was as an extension of reinforcement comparison, and the modern motivation is as a variance reduction mechanism for policy gradient algorithms. Why is the original version
+of actor-critic not a policy gradient method?
+\begin{solution}
+
+\end{solution}
+
+
+\question[4]
+This question requires you to do some \href{https://arxiv.org/abs/cs/9905014}{additional reading}.  Dietterich specifies certain conditions for safe-state abstraction for the MaxQ framework.  I had mentioned in class that even if we do not use the MaxQ value function decomposition, the hierarchy provided is still useful.  So, which of the safe-state abstraction conditions are still necessary when we do not use value function decomposition?
+\begin{solution}
+
+\end{solution}
+
+\question[3] Consider the problem of solving continuous control tasks using Deep Reinforcement Learning.
+
+\begin{parts}
+    \part[2] Why can simple discretization of the action space not be used to solve the problem? In which exact step of the DQN training algorithm is there a problem and why?
+    \begin{solution}
+    
+    \end{solution}
+    
+    \part[1] How is exploration ensured in the DDPG algorithm?
+    \begin{solution}
+    
+    \end{solution}
+\end{parts}
+
+
+\question[3] Option discovery has entailed using heuristics, the most popular of which is to identify bottlenecks. Justify why bottlenecks are useful sub-goals. Describe scenarios in which a such a heuristic could fail.
+\begin{solution}
+
+\end{solution}
+
+\end{questions}
+
+\end{document}
