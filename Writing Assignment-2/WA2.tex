@@ -20,7 +20,7 @@
 %\hfill Release date: 21 Jan, 2017, 12:00 pm}
 \vspace{1mm}
 \noindent 
-{Deadline: ?}
+{Deadline: 30-May-2020}
 
 \vspace{2mm}
 \hrule
@@ -40,8 +40,8 @@ prohibited.
 \hrule
 
 \vspace{3mm}
-\noindent {\sc Author :} Name. \\[1mm]
-\noindent {\sc Roll Number :} \\
+\noindent {\sc Author : Rana Pragneshkumar Rajubhai} Name. \\[1mm]
+\noindent {\sc Roll Number : ME17S301} \\
 \hrule
 
 
@@ -50,6 +50,40 @@ prohibited.
 Consider a bandit problem in which the policy parameters are mean $ \mu$ and variance $\sigma$ of normal distribution according to which actions are selected. Policy is defined as $ \pi(a;\mu,\sigma^2) = \frac{1}{\sqrt{2\pi\sigma}}e^-\frac{(a-\mu)^2}{2\sigma^2}$. Derive the parameter update conditions according to the REINFORCE procedure (assume baseline is zero).
 
 \begin{solution}
+The REINFORCEMENT parameter update equation can be written as,\\
+\begin{equation}
+	\Delta \theta_n = \alpha (R_n - b_n) \frac{\partial \ln \pi(a_n;\theta)}{\partial \theta_n}
+\end{equation}
+The parameters for Gaussian policy is given as $\mu$ and $\sigma$ and policy is given as,
+\begin{equation}
+	\pi(a;\mu,\sigma^2) = \frac{1}{\sqrt{2\pi\sigma}}e^-\frac{(a-\mu)^2}{2\sigma^2}
+\end{equation}
+Update of $\mu$:
+\begin{equation}
+\begin{aligned}
+\frac{\partial \ln \pi(a_n;\mu_n,\sigma_n)}{\partial \mu_n} &= \frac{\partial}{\partial\mu_n} \bigg\{ \frac{-(a_n -\mu_n)^2}{2\sigma_n^2}\bigg\}\\
+& = \frac{a_n-\mu_n}{\sigma_n^2}
+\end{aligned}
+\end{equation}
+Considering baseline performance to zero(b=0), update rule will be ,
+\begin{equation}
+	\mu_{n+1} = \mu_{n} + \alpha R_n \bigg(\frac{a_n-\mu_n}{\sigma_n^2}\bigg)
+\end{equation}
+
+similarly,
+Update of $\sigma$:
+\begin{equation}
+\begin{aligned}
+\frac{\partial \ln \pi(a_n;\mu_n,\sigma_n)}{\partial \sigma_n} &= \frac{\partial}{\partial\sigma_n} \bigg\{ -\ln (\sqrt{2\pi\sigma_n})\bigg\}+ \frac{\partial}{\partial \sigma_n}\bigg\{- \frac{-(a_n -\mu_n)^2}{2\sigma_n^2} \bigg\}\\
+&= - \frac{1}{\sigma_n} +\frac{-(a_n -\mu_n)^2}{2\sigma_n^2}\\
+&= \frac{1}{\sigma_n} \bigg\{ \bigg(\frac{a_n -\mu_n}{\sigma_n}\bigg)^2 - 1 \bigg\}
+\end{aligned}
+\end{equation}
+
+update rule for the variance will be ,
+\begin{equation}
+\sigma_{n+1} = \sigma_{n} + \alpha R_n \frac{1}{\sigma_n} \bigg\{ \bigg(\frac{a_n -\mu_n}{\sigma_n}\bigg)^2 - 1 \bigg\}
+\end{equation}
 
 
 \end{solution}
