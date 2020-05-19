@@ -92,15 +92,22 @@ update rule for the variance will be ,
  \begin{enumerate}[label=(\alph*)]
      \question[2]  Why would you consider the policy gradient approach to be better than the value function based approach?
      \begin{solution}
+		Value function based methods approximation the Q function and use to find optimal policy so, in case of non-existence of optimal policy, it may get stuck infinitely in loop or it might take all the upper defined limit of iteration. Whereas, the policy gradient has better convergence criteria as it directly optimize the policy space by finding the local optimal policy. The action is picked based on the state which maximized the reward which done using parameter$\theta$.
+		\begin{equation}
+			\pi(a|a,\theta = \Pr{A_t=a,S_t,\theta_t=\theta})
+		\end{equation}
+		Eq.- shows that, the policy is denotes the probability of taking action based on state(s) and parameter($\theta$).
+		
+		 Due to this characteristic, policy gradient method may converge to local optima or best action are more likely to get sampled and converges. Due to this, policy gradient approach is better than value function approximation. 
      
      \end{solution}
      \question[2]  Under what circumstances would the value function based approach be better than the policy gradient approach?
      \begin{solution}
-     
+     For the case of existence of optimal policy, value function based approximation technique is useful as policy gradient method may end up with sub optimal policy.  Even value function method works better for high variance case. In case of high variance policy gradient requires other variance reduction treatment.
      \end{solution}
      \question[2]  Is there some circumstance under which either of the method can find the optimal policy?
      \begin{solution}
-     
+     	Yes, in the case of deterministic policy value function works and the policy gradient may converge the best sub-optimal policy. If optima exist, then both method can find optimal learn optimal policy and policy gradient can do it efficiently.  
      \end{solution}
  
  \end{enumerate}
