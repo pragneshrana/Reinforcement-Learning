@@ -61,34 +61,33 @@ The parameters for Gaussian policy is given as $\mu$ and $\sigma$ and policy is 
 Update of $\mu$:
 \begin{equation}
 \begin{aligned}
-\frac{\partial \ln \pi(a_n;\mu_n,\sigma_n)}{\partial \mu_n} &= \frac{\partial}{\partial\mu_n} \bigg\{ \frac{-(a_n -\mu_n)^2}{2\sigma_n^2}\bigg\}\\
-& = \frac{a_n-\mu_n}{\sigma_n^2}
+\frac{\partial \ln \pi(a_n;\mu_n,\sigma_n)}{\partial \mu_n} &= \frac{\partial}{\partial\mu_n} \bigg\{ \frac{-(a_n -\mu_n)^2}{2\sigma_n^2}\bigg\} 
+= \frac{a_n-\mu_n}{\sigma_n^2}
 \end{aligned}
 \end{equation}
-Considering baseline performance to zero(b=0), update rule will be ,
+Considering baseline performance to zero(b=0), \\
 \begin{equation}
+	\text{\textbf{update rule for mean  :   }  }
 	\mu_{n+1} = \mu_{n} + \alpha R_n \bigg(\frac{a_n-\mu_n}{\sigma_n^2}\bigg)
 \end{equation}
-
 similarly,
-Update of $\sigma$:
+Update of variance($\sigma$):
 \begin{equation}
 \begin{aligned}
 \frac{\partial \ln \pi(a_n;\mu_n,\sigma_n)}{\partial \sigma_n} &= \frac{\partial}{\partial\sigma_n} \bigg\{ -\ln (\sqrt{2\pi\sigma_n})\bigg\}+ \frac{\partial}{\partial \sigma_n}\bigg\{- \frac{-(a_n -\mu_n)^2}{2\sigma_n^2} \bigg\}\\
-&= - \frac{1}{\sigma_n} +\frac{-(a_n -\mu_n)^2}{2\sigma_n^2}\\
-&= \frac{1}{\sigma_n} \bigg\{ \bigg(\frac{a_n -\mu_n}{\sigma_n}\bigg)^2 - 1 \bigg\}
+&= - \frac{1}{\sigma_n} +\frac{-(a_n -\mu_n)^2}{2\sigma_n^2}
+= \frac{1}{\sigma_n} \bigg\{ \bigg(\frac{a_n -\mu_n}{\sigma_n}\bigg)^2 - 1 \bigg\}
 \end{aligned}
 \end{equation}
-
-update rule for the variance will be ,
 \begin{equation}
+\text{\textbf{Update rule for variance  :}      } 
 \sigma_{n+1} = \sigma_{n} + \alpha R_n \frac{1}{\sigma_n} \bigg\{ \bigg(\frac{a_n -\mu_n}{\sigma_n}\bigg)^2 - 1 \bigg\}
 \end{equation}
 
 
 \end{solution}
 \question[6]
- Let us consider the effect of approximation on policy search and value function based methods. Suppose that a policy gradient method uses a class of policies that do not contain the optimal policy; and a value function based method uses a function approximator that can represent the values of the policies of this class, but not that of the optimal policy.
+ Let us consider the effect of approximation on policy search and value function based methods. Suppose that a policy gradient method uses a class of policies that do not contain the optimal policy; and a value function based method uses a function appropriator that can represent the values of the policies of this class, but not that of the optimal policy.
  \begin{enumerate}[label=(\alph*)]
      \question[2]  Why would you consider the policy gradient approach to be better than the value function based approach?
      \begin{solution}
@@ -112,6 +111,7 @@ update rule for the variance will be ,
  
  \end{enumerate}
  
+ \newpage
 
 \question[4] Answer the following questions with respect to the DQN algorithm:
 \begin{itemize}
@@ -119,32 +119,72 @@ update rule for the variance will be ,
     \begin{equation}
         \Delta \theta=\alpha(R_{t+1}+\gamma V(S_{t+1},\theta)-V(S_{t},\theta))\nabla_{\theta}V(S_{t},\theta)
     \end{equation}
-    Is the update correct ? Is any term missing ? Justify your answer
+      Is the update correct ? Is any term missing ? Justify your answer
     \begin{solution}
+    	\item Yes, the update is correct
+    	\item No term is missing.
+    	
+    	\begin{equation}
+    	\Delta \theta=\alpha(R_{t+1}+\gamma V(S_{t+1},\theta)-V(S_{t},\theta))\nabla_{\theta}V(S_{t},\theta)
+    	\end{equation}
+    	
+    	\item For the given equation,\\
+    	$(R_{t+1}+\gamma V(S_{t+1},\theta)$ denotes the target and $V(S_{t},\theta)$ term is required control function.
+    	
+    	The update rule is given as,
+    	\begin{equation}
+    		\theta_{t+1} = \theta_{t} + \alpha \nabla_{\theta_{t}}[(R_{t+1} + \gamma \hat{V}(s_{t},\theta_t) -\hat{V}(s_{t},\theta_t))^2 ]
+    	\end{equation}
+    	By differentiating w.r.t $\theta$ the target term will act as constant as it can be replace by return like $G_t$ so, completer update rule will be,
+    	\begin{equation}
+    	\theta_{t+1} = \theta_{t} + \alpha(R_{t+1}+\gamma V(S_{t+1},\theta)-V(S_{t},\theta))\nabla_{\theta}V(S_{t},\theta)
+    	\end{equation}
+    	
+    	
     
     \end{solution}
     \question [2] Describe the two ways discussed in class to update the parameters of target network. Which one is better and why?
     \begin{solution}
+    	The two ways to update the parameters mentioned in the lecture is based on the sampling method. As the sampling method varies, the associated data and its up-gradation in parameters also varies.
+    	\item Online- off policy algorithm
+    	\item Memory based transition reply 
+    	
+    	Memory based transition reply is better
+    	
+    	Out of which transition state reply is good as it solves the problem f repeated samples. In case of online algo. the obtained samples might correlated and may create problem in convergence which is not observed in case of transition reply.
+    	
     
     \end{solution}
 \end{itemize}
 
+\newpage
 \question[4] Experience replay is vital for stable training of DQN.
 \begin{parts}
     \part[2] What is the role of the experience replay in DQN?
     \begin{solution}
-    
+    The neural network can get learn samples from experience which might be consecutive but it might be highly correlated. Such correlation makes learning inefficient. To break such correlation experience reply memory us useful as it stores all the sample and randomly samples will be picked up.
+	In short, \textbf{ experience replay memory is useful to break the correlation between consecutive samples.} 
     \end{solution}
     \part[2] Consequent works in literature sample transitions from the experience replay, in proportion to the TD-error. Hence, instead of sampling transitions using a uniform-random strategy, higher TD-error transitions are sampled at a higher frequency. Why would such a modification help?
     \begin{solution}
-    
+    The uniform random strategy may cause bias in certain state-action space. Due to repetition or any other reason,  certain random sample might get sampled often. Such problem can be resolved by sampling from higher TD error transition. If samples from \textbf{certain state-action space} is not picked up from long duration then it may caused more error so, sampling based on TD error in next few iteration with higher frequency can stabilize the process. Eventually, \textbf{it will cover whole region and sampling transition will be smooth rather than abrupt.}
     \end{solution}
 \end{parts}
 
 \question[3] We discussed two different motivations for actor-critic algorithms: the original motivation was as an extension of reinforcement comparison, and the modern motivation is as a variance reduction mechanism for policy gradient algorithms. Why is the original version
 of actor-critic not a policy gradient method?
 \begin{solution}
+The reinforce can be written as,
+\begin{equation}
+\begin{aligned}
+\Delta \theta &= \alpha_n (r_n - b_n) \frac{\partial \ln \pi(a,\theta_n)}{\partial \theta}\\
+&= \alpha_n (G_n - b_n) \frac{\partial \ln \pi(a,\theta_n)}{\partial \theta}
+\end{aligned}
+\end{equation}
+$r_n$ is related to return and can be replace by $G_n$.
 
+The original version of reinforce contains $G_n$ term in  the formulation  which causes high variance in the update as each time different sample might have different return. 
+If the $G_n$ term is replaced by the value function or some form of value function then variation in that term can be reduced which connects the reinforce to policy gradient. So, the original reinforce or actor critic in not policy gradient.
 \end{solution}
 
 
