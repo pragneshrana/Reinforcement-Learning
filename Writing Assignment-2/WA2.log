@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.19)  20 MAY 2020 19:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.19)  21 MAY 2020 18:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -453,6 +453,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 118--119
  []
 
 [3] [4] [5]
+Overfull \hbox (0.23183pt too wide) in paragraph at lines 228--229
+\OT1/cmr/m/n/12 real world ap-pli-ca-tion have con-tin-u-ous and high di-men-si
+onal ac-tion space. \OT1/cmr/bx/n/12 DQN
+ []
+
+[6] [7]
 This exam contains 13 questions with 4 parts, 0 subparts, and 0 subsubparts.
 This exam has a total of 47 points.
 This exam has a total of 0 bonus points.
@@ -460,27 +466,27 @@ This exam has a total of 0 bonus points.
 Class exam Warning: Point totals have changed. Rerun to get point totals right.
 
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 219.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 219.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 261.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 261.
 (./WA2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 219.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 219.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 261.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 261.
 Package rerunfilecheck Info: File `WA2.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 219.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 261.
  ) 
 Here is how much of TeX's memory you used:
- 7352 strings out of 493029
- 104971 string characters out of 6136233
- 208498 words of memory out of 5000000
- 10788 multiletter control sequences out of 15000+600000
+ 7364 strings out of 493029
+ 105126 string characters out of 6136233
+ 208545 words of memory out of 5000000
+ 10794 multiletter control sequences out of 15000+600000
  10976 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,12n,26p,591b,516s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,12n,26p,591b,518s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/tex
@@ -493,11 +499,12 @@ c/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on WA2.pdf (5 pages, 162202 bytes).
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on WA2.pdf (7 pages, 183739 bytes).
 PDF statistics:
- 119 PDF objects out of 1000 (max. 8388607)
- 97 compressed objects within 1 object stream
- 33 named destinations out of 1000 (max. 500000)
+ 141 PDF objects out of 1000 (max. 8388607)
+ 115 compressed objects within 2 object streams
+ 39 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

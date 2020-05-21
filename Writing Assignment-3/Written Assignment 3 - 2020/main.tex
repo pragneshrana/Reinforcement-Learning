@@ -51,7 +51,18 @@ prohibited.
 \question[3] Consider the problem of solving POMDPs using Deep Reinforcement Learning. Can you think of ways to modify the standard DQN architecture to ensure it can remember histories of states. Does the experience replay also need to be modified? Explain.
 
 \begin{solution}
+Ref: \url{ http://cs229.stanford.edu/proj2015/363_report.pdf} \\
+In deep Q learning, a neural network is used to approximate the POMDP Q-values. For POMDP, the Q values are parameterized by either the belief and the action Q(b,a) or an action-observation history h and Q(h,a). The modified Q-values can be learned by a neural network that is characterized by weights and biases combined denoted as $\theta$. Q values will be $Q(b,a|\theta)$. The standard update of Q values may lead to divergence. Such issues is resolved by experience replay tuples (b,a,r,b′) which are recorded in a reply memory. The aim of replay is to stabilize the learning by drawing samples uniformly.
 
+\begin{center}
+	\includegraphics[trim={0cm 0cm 0cm 0cm},clip,scale=0.2]{DQN.png}\label{DQN}
+\end{center}
+
+Apart from this, a separate target network is used update state targets to the main network.  An adaptive learning method can be used  to  regulate and adjustment the parameter rate  of  the  network. 
+
+\textbf{Changes in architecture:} \\
+The changed architecture of DQN is given in figure-\ref{DQN}. In architecture, simulator is used to populate and experience reply dataset. The input layer consists the belief of the agent and fully observable state variables which generalize the representation of problems. The agent may have some knowledge of the system state known as mixed observability MDPs(MDOMPs). 
+\textbf{A similar architecture was used for training the DQN on action observation histories which requires the manipulation of experience reply for efficient use of reply.}  The fully observable state variables are used as inputs to the network. The current formulation uses a fully connected network that either takes the fully observable state variables and the belief or just the belief  and outputs a value approximation.
 \end{solution}
 
 
