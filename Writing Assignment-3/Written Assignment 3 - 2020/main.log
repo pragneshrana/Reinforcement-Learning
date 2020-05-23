@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.19)  23 MAY 2020 23:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.19)  24 MAY 2020 02:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -453,30 +453,47 @@ Package pdftex.def Info: DQN.png used on input line 60.
 (pdftex.def)             Requested size: 250.93306pt x 108.40308pt.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./DQN.png>]
-Overfull \vbox (14.07465pt too high) detected at line 93
- []
-
-[2] <belief.png, id=36, 1541.76pt x 2055.68pt>
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./DQN.png>] [2]
+<belief.png, id=34, 1541.76pt x 2055.68pt>
 File: belief.png Graphic file (type png)
  <use belief.png>
 Package pdftex.def Info: belief.png used on input line 101.
 (pdftex.def)             Requested size: 143.32347pt x 217.6534pt.
- [3 <./belief.png>] [4] [5]
-Overfull \hbox (142.54004pt too wide) in paragraph at lines 179--180
+ [3 <./belief.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 123--124
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 147--148
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 151--152
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 154--158
+
+ []
+
+[5]
+Overfull \hbox (142.54004pt too wide) in paragraph at lines 183--184
 []\OT1/cmr/m/n/12 This ques-tion may re-quire you to re-fer to [][]https://link
 .springer.com/content/pdf/10.1007/BF00114727.pdf[][]
  []
 
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 189.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 193.
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 202--203
+Underfull \hbox (badness 10000) in paragraph at lines 206--207
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 207--211
+Underfull \hbox (badness 10000) in paragraph at lines 211--215
 
  []
 
@@ -484,20 +501,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 207--211
 File: average_reward.png Graphic file (type png)
 
 <use average_reward.png>
-Package pdftex.def Info: average_reward.png used on input line 218.
+Package pdftex.def Info: average_reward.png used on input line 222.
 (pdftex.def)             Requested size: 253.5492pt x 96.96298pt.
  [7 <./average_reward.png>]
 This exam contains 7 questions with 4 parts, 0 subparts, and 0 subsubparts.
 This exam has a total of 42 points.
 This exam has a total of 0 bonus points.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 226.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 226.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 230.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 230.
 (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 226.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 226.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 230.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 230.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 226.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 230.
  ) 
 Here is how much of TeX's memory you used:
  8412 strings out of 493029
@@ -506,7 +523,7 @@ Here is how much of TeX's memory you used:
  11845 multiletter control sequences out of 15000+600000
  10524 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,10n,39p,695b,615s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,10n,39p,676b,615s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/tex
@@ -519,7 +536,7 @@ c/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 msy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on main.pdf (7 pages, 1584189 bytes).
+Output written on main.pdf (7 pages, 1587295 bytes).
 PDF statistics:
  126 PDF objects out of 1000 (max. 8388607)
  97 compressed objects within 1 object stream

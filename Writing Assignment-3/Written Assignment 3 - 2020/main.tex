@@ -24,7 +24,7 @@
 %\hfill Release date: 21 Jan, 2017, 12:00 pm}
 \vspace{1mm}
 \noindent 
-{\large \hfill Deadline: ??}
+{\large \hfill Deadline: 30-May-2020}
 
 \vspace{2mm}
 \hrule
@@ -44,8 +44,8 @@ prohibited.
 \hrule
 
 \vspace{3mm}
-\noindent {\sc Author :} Name. \\[1mm]
-\noindent {\sc Roll Number :} \\
+\noindent {\sc Author : Rana Pragneshkumar Rajubhai}  \\[1mm]
+\noindent {\sc Roll Number : ME17S301} \\
 %\hrule
 
 
@@ -64,7 +64,7 @@ Apart from this, a separate target network is used update state targets to the m
 
 \textbf{Changes in architecture:} \\
 The changed architecture of DQN is given in figure-\ref{DQN}. In architecture, simulator is used to populate and experience reply dataset. The input layer consists the belief of the agent and fully observable state variables which generalize the representation of problems. The agent may have some knowledge of the system state known as mixed observability MDPs(MDOMPs). 
-\textbf{A similar architecture was used for training the DQN on action observation histories which requires the manipulation of experience reply for efficient use of reply.}  The fully observable state variables are used as inputs to the network. The current formulation uses a fully connected network that either takes the fully observable state variables and the belief or just the belief  and outputs a value approximation.
+\textbf{A similar architecture can be used for training the DQN with action observation histories which requires the manipulation of experience reply for efficient use of reply.}  The fully observable state variables are used as inputs to the network. The current formulation uses a fully connected network that either takes the fully observable state variables and the belief or just the belief  and outputs a value approximation.
 \end{solution}
 
 
@@ -75,9 +75,9 @@ However, it is intractable to maintain these counts in high-dimensional spaces, 
 \begin{solution}
 Ref: \url{http://surl.tirl.info/proceedings/SURL-2017_paper_5.pdf} \\
 The solution to this problem is count-based exploration algorithm. The proposed algorithm uses linear function approximation(LFA). 
-The key idea behind the algorithm is to exploit the feature map that is uses of value function approximation, and construct a density model over the transformed feature space. The model assigns higher probability to state feature vectors that share features with visited states.
+The key idea behind the algorithm is to exploit the feature map that is uses of value function approximation, and construct a density model over the transformed feature space. The model assigns higher probability to state feature vectors that share similar features with visited states.
 
-The algorithm is called $\phi$-Exploration Bonus algorithm. A generalized count is a novelty measure that quantifies how dissimilar a state is from those already visited. $\phi_t = \phi(s_t)$ denote the state feature vector observed at time t. We denote the sequence of observed feature vectors after t timesteps by $\phi_{1:t}\in T_t$, and denote the set of all finite sequences of feature vectors by $T^*$. $\phi_{1:t}\phi$ denote the sequence where $\phi_{1:t}$ is followed by $\phi$. 
+The algorithm is called $\phi$-Exploration Bonus algorithm. A mentioned generalized count is a novelty measure that quantifies how dissimilar a state is from those already visited. $\phi_t = \phi(s_t)$ denote the state feature vector observed at time t. We denote the sequence of observed feature vectors after t timesteps by $\phi_{1:t}\in T_t$, and denote the set of all finite sequences of feature vectors by $T^*$. $\phi_{1:t}\phi$ denote the sequence where $\phi_{1:t}$ is followed by $\phi$. 
 $\rho_t(\phi)$ be the feature visit density after observation of $\phi_{1:t}$. $\rho'_t(\phi)$ density after observation of $\phi_{1:t}\phi$. The pseudocount $N_t^\phi$ is defined as,
 \begin{equation}
 	N^\phi_t = \frac{\rho_t(\phi(s))(1-\rho'_t(\phi(s)))}{\rho'_t(\phi(s))-\rho_t(\phi(s))}
@@ -103,7 +103,7 @@ The example explained in the lecture have possible.
 
 The Grid world is given in fig-\ref{grid}. Each cell with 0 indicates clear or approachable state and 1 indicates(green colour) are obstacles. Green and Red colour cell indicates wall. The location of state is give based on its neighbor cell. The state numbering starts from north and goes by following clockwise direction. States: 0001, 1010, 0101, 1100, 0110, 0011, 0100, 1001 have its count respectively 1, 6, 8, 1, 1, 1, 1, 1.
 
-\textbf{Let's take example of to reach 1001.}  There are many ways to reach at that spot. But if we know certain history then it attainable to reach desired state with Pr=1. Initial state have some initial belief p(s). As more observation is added in terms of history, the belief about the state space keeps getting more focused. After update $p(s)\rightarrow p'(s) \rightarrow p''(s)$ and $p(s)> p'(s)> p''(s)$ probability of getting correct belief goes higher. For k-th order Markov chain the belief gets updated k times in which there is high probability that all state in Markov chain gets correct belief state which in turn may give true state with probability 1.
+\textbf{Let's take example of to reach 1001.}  There are many ways to reach at that spot. But if we know certain history then it attainable to reach desired state with Pr=1. Initial state have some initial belief p(s). As more observation is added in terms of history, the belief about the state space keeps getting more focused. After update $p(s)\rightarrow p'(s) \rightarrow p''(s)$ and $p(s)> p'(s)> p''(s)$ probability of getting correct belief goes higher. For k-th order Markov chain, if the belief gets updated k times then there is high probability that all state in Markov chain gets correct belief state and ended up having probability 1.
 
 \end{solution}
 
@@ -112,17 +112,18 @@ The Grid world is given in fig-\ref{grid}. Each cell with 0 indicates clear or a
 Q-MDPs are a technique for solving the problem of behaving in POMDPs. The behavior produced by this approximation would not be optimal. In what sense is it not optimal?  Are there circumstances under which it can be optimal?
 
 \begin{solution}
-	In Q-MDP we have solved the problem assuming that we access to state at that point. But to solve the problem later, by heuristic approach to get the execution policy. The obtained execution policy obtained by heuristic way might not be optimal as heuristic might have uncertainty in states and there might be better action to pick in terms of total reward obtained. so,\textbf{ execution policy obtained by heuristic might have uncertainty and this lead to sub-optimal approximation.}
+	In Q-MDP, the problem has solved by assuming access to state at that point and by heuristic approach the execution policy is obtained. The obtained execution policy by heuristic way might not be optimal as heuristics might have uncertainty in states and there might be better action to pick in terms of total reward obtained. so,\textbf{ execution policy obtained by heuristic lead to sub-optimal approximation due to uncertainty.}
 	
-	If we solve the POMDP directly then there are chance to get optimal scenario given states are known. Known states and desired action gives next states and which makes policy deterministic. \textbf{Using the simplex belief states and relation between value function gives efficient way to solve POMDP directly to learn policy from history such deterministic scenario makes approximation optial.}
+	If we solve the POMDP directly then there might be  chance to get optimal scenario, given states are known. Known states and desired action gives next states which makes policy deterministic. \textbf{Using the simplex belief states and relation between value function gives efficient way to solve POMDP directly to learn policy from history. Such deterministic scenario makes approximation optial.}
 \end{solution}
 
 \question[3] What are some advantages and disadvantages of A3C over DQN? What are some potential issues that can be caused by asynchronous updates in A3C?
 
 \begin{solution}
-In DQN, a single agent interacts with a single environment. whereas, A3C asynchronously launches many workers  based on efficiency of CPU. All of them interact with their own environment. Every worker instance also has their own environment which gives more diverse data. This approach makes network robust and gives good results.\\
+In DQN, a single agent interacts with a single environment. whereas, A3C asynchronously can launch many workers  based on efficiency of CPU. All of them interact with their own environment. As every worker instance also has their own environment so, they can generate more diverse data. This approach makes network robust and gives good results.\\
+
 \textbf{Advantages of A3C:}
- \subitem --- By asynchronously launching more workers gives more training data, which makes the collection of the data faster.
+ \subitem --- By asynchronously launching more workers, it is possible to get more training data, which makes the collection of the data faster.
  \subitem --- As every worker have different environment, the data obtained will be more diverse. 
  \subitem --- The variation in data makes process more efficient and gives better result. 
  
@@ -143,15 +144,18 @@ the problem of delivering mail to the office rooms in a multi storey building.
 \begin{parts}
     \part[4] Outline a method to achieve this, using concepts from hierarchical RL.
     \begin{solution}
-    	Traveling salesman problem or post delivery kind of problems have repetition of certain action. Such large navigation problem in stochastic domain may follow certain in structure in state space. Large navigation problem can be divided into smaller, repetitive, reusable, sub problems which follows repetition of certain actions.
+    	Traveling salesman problem or post delivery kind of problems have repetition of certain action. Such large navigation problem in stochastic domain may follow certain structure in state space. It can be divided into smaller, repetitive, reusable, sub problems which follows repetition of certain actions.\\
     	
-    	Solving sub-problems can take varying amount of time and  space which is expressed as\textbf{ Temporal abstraction. }
+    	Solution of the sub-problems can take varying amount of time and  space which is expressed as\textbf{ Temporal abstraction. }
     	
-    	Smaller sub problems can be optimized and for new problem, some part of optimized problem can be reused. Such transfer of problem provides \textbf{reuse-ability.}
+    	Smaller sub problems can be optimized and for new problem, some part of optimized problem can be reused. Such transfer of problem provides \textbf{reuse-ability.}\\
+    	
     	
     \textbf{Stpes:}
     Divide the the lager problem into smaller, repetitive sub problems.  Each smaller problems can be optimized and each smaller object can be called step by step.
     One of the approach to solve such kind of problem is \textbf{Hierarchical Abstract Machine(HAM).} 
+    \\
+    
     \subitem In this each machine contains four steps:
 	    \subsubitem \textbf{Action state :}  At this state it performs the action. Inputs will be state of the problem. The control will be transfer to call state. 
 	    \subsubitem\textbf{ Call state :} This state machine will check different possible condition and call most relevant machine.
@@ -159,7 +163,7 @@ the problem of delivering mail to the office rooms in a multi storey building.
 	    \subsubitem \textbf{Stop state :} If the goal is reached this machine will stop all machine and give final output in terms of primitive states. 
     
     \subsubitem $--> $To explain this in terms of traveling sales man problem,
-    Based on initial state, salesman will perform action means he/she can go to can take cab or travel to new  nearest city.  Out of all available choice, the most relevant choice will be called means salesman will look at the available choice and optimize the state action space and perform the required action like doing deals or sales. After performing all the action salesman, he can take the most optimized route for next deal. If goal is reached then the stop machine will check the end condition and can give final output. All the different smaller action  can be performed parallely and
+    Based on initial state, salesman will perform action means he/she can go to take cab or travel to new  nearest city.  Out of all available choice, the most relevant choice will be called means salesman will look at the available choice and in optimized state action space, perform the required action like doing deals or sales. After performing all the action salesman can take the most optimized route for next deal. If goal is reached then the stop machine will check the end condition and can give final output. All the different smaller action  can be performed parallely and
     combined result can be obtained.
     \end{solution}
     \part[2] What problems would such an approach encounter?
@@ -170,7 +174,7 @@ the problem of delivering mail to the office rooms in a multi storey building.
     
     -- Connection between action and optimization of state space can increase the computational cost.
     
-    -- The hierarchy may go indefinitely deep, so about hierarchy is crucial.
+    -- The hierarchy may go indefinitely deep, so minor details about hierarchy is crucial.
     
      
     \end{solution}
