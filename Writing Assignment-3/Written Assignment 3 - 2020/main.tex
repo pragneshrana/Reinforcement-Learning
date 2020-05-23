@@ -103,7 +103,7 @@ The example explained in the lecture have possible.
 
 The Grid world is given in fig-\ref{grid}. Each cell with 0 indicates clear or approachable state and 1 indicates(green colour) are obstacles. Green and Red colour cell indicates wall. The location of state is give based on its neighbor cell. The state numbering starts from north and goes by following clockwise direction. States: 0001, 1010, 0101, 1100, 0110, 0011, 0100, 1001 have its count respectively 1, 6, 8, 1, 1, 1, 1, 1.
 
-\textbf{Let's take example of to reach 1001.}  There are many ways to reach at that spot. But if we know certain history then it attainable to reach desired state with Pr=1. Initial state have some initial belief p(s). As more observation is added in terms of history, the belief about the state space keeps getting more focused.  
+\textbf{Let's take example of to reach 1001.}  There are many ways to reach at that spot. But if we know certain history then it attainable to reach desired state with Pr=1. Initial state have some initial belief p(s). As more observation is added in terms of history, the belief about the state space keeps getting more focused. After update $p(s)\rightarrow p'(s) \rightarrow p''(s)$ and $p(s)> p'(s)> p''(s)$ probability of getting correct belief goes higher. For k-th order Markov chain the belief gets updated k times in which there is high probability that all state in Markov chain gets correct belief state which in turn may give true state with probability 1.
 
 \end{solution}
 
@@ -143,18 +143,74 @@ the problem of delivering mail to the office rooms in a multi storey building.
 \begin{parts}
     \part[4] Outline a method to achieve this, using concepts from hierarchical RL.
     \begin{solution}
+    	Traveling salesman problem or post delivery kind of problems have repetition of certain action. Such large navigation problem in stochastic domain may follow certain in structure in state space. Large navigation problem can be divided into smaller, repetitive, reusable, sub problems which follows repetition of certain actions.
+    	
+    	Solving sub-problems can take varying amount of time and  space which is expressed as\textbf{ Temporal abstraction. }
+    	
+    	Smaller sub problems can be optimized and for new problem, some part of optimized problem can be reused. Such transfer of problem provides \textbf{reuse-ability.}
+    	
+    \textbf{Stpes:}
+    Divide the the lager problem into smaller, repetitive sub problems.  Each smaller problems can be optimized and each smaller object can be called step by step.
+    One of the approach to solve such kind of problem is \textbf{Hierarchical Abstract Machine(HAM).} 
+    \subitem In this each machine contains four steps:
+	    \subsubitem \textbf{Action state :}  At this state it performs the action. Inputs will be state of the problem. The control will be transfer to call state. 
+	    \subsubitem\textbf{ Call state :} This state machine will check different possible condition and call most relevant machine.
+	    \subsubitem \textbf{Choice state :} Based on choice this machine will perform the relevant choice of action.
+	    \subsubitem \textbf{Stop state :} If the goal is reached this machine will stop all machine and give final output in terms of primitive states. 
     
+    \subsubitem $--> $To explain this in terms of traveling sales man problem,
+    Based on initial state, salesman will perform action means he/she can go to can take cab or travel to new  nearest city.  Out of all available choice, the most relevant choice will be called means salesman will look at the available choice and optimize the state action space and perform the required action like doing deals or sales. After performing all the action salesman, he can take the most optimized route for next deal. If goal is reached then the stop machine will check the end condition and can give final output. All the different smaller action  can be performed parallely and
+    combined result can be obtained.
     \end{solution}
     \part[2] What problems would such an approach encounter?
-    \begin{solution}
+    \begin{solution}\\
+    -- Hierarchical reinforcement requires proper connection of smaller problem.
     
+    -- Wrong hierarchy may generate the unexpected result.
+    
+    -- Connection between action and optimization of state space can increase the computational cost.
+    
+    -- The hierarchy may go indefinitely deep, so about hierarchy is crucial.
+    
+     
     \end{solution}
 \end{parts}
 
 \question[6] This question may require you to refer to \href{this}{https://link.springer.com/content/pdf/10.1007/BF00114727.pdf} paper on average reward RL. Consider the 3 state MDP shown in Figure \ref{fig:avg}.  Mention the recurrent class for each such policies. In the average reward setting, what are the corresponding $\rho^{\pi}$ for each such policy ? Furthermore, which of these policies are gain optimal ? 
     \begin{parts}
         \part[3] What are the different deterministic uni-chain policies present ?
+        \begin{solution}
+        An MDP is termed unichain
+        if the transition matrix corresponding to every policy contains a single recurrent class,
+        and a (possibly empty) set of transient states.
+        
+        Class of MDP:
+        The problem contains two recurrent unichain MDPs.
+        \textbf{\subitem Class-1 policy : }\{State-A, State-B\}
+        From state-A if action a1 is performed then it goes to state-B and again come back to state-A so with period of 2. The formed policy is  \{A;a1(2,1), B;a2(0,1)\}
+        
+        \textbf{\subitem Class-2 policy:} \{State-A;action-a2, State-C\}
+        From state A, action a2 is performed then control will go to state-c it will come again to state-A. so given states also form policy by performing action policy  :\{A;a2(0,1) , C;a2(1,1)\}.
+        
+        \textbf{\subitem Class-3 policy:} \{State-A; action-a3, State-C\}
+        If action a3  is performed then from state-c will come to state-A. so given states also form policy by performing action:\{A;a3(-1,1), C;a2(1,1)\}.
+        
+        
+        \end{solution}
         \part[3] In the average reward setting, what are the corresponding $\rho^{\pi}$ for each such policy ? Furthermore, which of these policies are gain optimal ? 
+        \begin{solution}
+        	The average reward is defined as,\\
+        	\begin{equation}
+        		\rho^\pi =\lim\limits_{N\rightarrow \infty} \frac{E(\sum_{t=0}^{N-1}R_t^\pi(x))}{N}
+        	\end{equation}
+        	
+        	For,\\
+        	class-1  average reward : 2 \\
+        	class-2  average reward : 1 \\
+ 	       	class-3  average reward : 0 \\     
+ 	       	
+ 	       	Out of these policy, the policy which gives maximum expected reward is defined as gain optimal $\rho^*$. class-1 policy, by performing action:\{a1(0,1),a1(2,1)\}  gives maximum reward-2 , is optimal gain policy.
+        \end{solution}
     \end{parts}
 
     \begin{figure}[h]
