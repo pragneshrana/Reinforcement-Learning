@@ -68,10 +68,10 @@ class GridWorld(gym.Env):
         self.my_state = None
         self.Q = None
         self.V = None
-        self.epsilon = None
+        self.epsilon_val = None
         self.options_length = 1
-        self.alpha = None
-        self.gamma = None
+        self.alpha_val = None
+        self.gamma_val = None
         self.draw_circles = None
         self.hallway_reward = 0
         self.options_Q = None
@@ -273,7 +273,7 @@ class GridWorld(gym.Env):
                     update_options.append(5)
 
                 # Intra option Q learning update
-                self.options_Q[observation][a] += self.alpha*(reward + self.gamma
+                self.options_Q[observation][a] += self.alpha_val*(reward + self.gamma_val
                                                               * self.options_Q_hat[next_observation][a] - self.options_Q[observation][a])
                 max_o = np.max(self.options_Q[next_observation])
                 if (self.terminal_state == next_observation) or (self.absorbing_state == next_observation):
@@ -284,7 +284,7 @@ class GridWorld(gym.Env):
                     1 - beta_s)*self.options_Q[next_observation][a] + beta_s*max_o
 
                 for o in update_options:
-                    self.options_Q[observation][o] += self.alpha*(reward + self.gamma
+                    self.options_Q[observation][o] += self.alpha_val*(reward + self.gamma_val
                                                                   * self.options_Q_hat[next_observation][o] - self.options_Q[observation][o])
                     max_o = np.max(self.options_Q[next_observation])
                     if options_termiantion_indexs[start_room][o-4] == next_observation:
@@ -382,7 +382,7 @@ class GridWorld(gym.Env):
 
         self.observation = self._gridmap_to_observation()
         img = self.observation
-        fig = plt.figure(1, figsize=(10, 8), dpi=60,
+        fig = plt.figure(1, dpi=300,
                          facecolor='w', edgecolor='k')
         fig.canvas.set_window_title(self.figtitle)
         plt.clf()
@@ -404,16 +404,16 @@ class GridWorld(gym.Env):
                     y = 12-centre[0]
                     x = centre[1]
                     if self.optimal_policy[i] > 3:
-                        #  style='italic', bbox={'facecolor': 'red', 'alpha': 0.5, 'pad': 10})
+                        #  style='italic', bbox={'facecolor': 'red', 'alpha_val': 0.5, 'pad': 10})
                         if self.optimal_policy[i] == 4:
-                            ax.text(x+0.3, y+0.3, 'O1', fontweight='bold')
+                            ax.text(x+0.3, y+0.3, 'H1', fontweight='bold')
                         else:
-                            ax.text(x+0.3, y+0.3, 'O2', fontweight='bold')
+                            ax.text(x+0.3, y+0.3, 'H2', fontweight='bold')
                     elif self.optimal_policy[i] == -1:
-                        ax.text(x+0.3, y+0.3, 'NE', fontweight='bold')
+                        ax.text(x+0.3, y+0.3, 'NA', fontweight='bold')
                     else:
                         self._draw_arrows(x, y, self.optimal_policy[i])
-            plt.title("Four room Grid World learned Optimal Policy\nO1: Hallway Option 1 (clockwise) O2: Hallway Option 2 \n NE: State Not Explored", fontsize=15)
+            plt.title("Four room Grid World learned Optimal Policy\n H1: Hallway Option 1 (clockwise) H2: Hallway Option 2 \n NA: Not Applicable (Not Explored)", fontsize=15)
             plt.savefig(self.figtitle+"_Arrows.png")
 
         if self.draw_circles: # for drawing circles for V values
@@ -431,6 +431,7 @@ class GridWorld(gym.Env):
                 ax.add_artist(circle1)
             plt.title("Four room Grid World learned State Values\n Start: Blue, Goal: Green", fontsize=15)
             plt.savefig(self.figtitle+"_Circles.png")
+            
 
         plt.pause(0.00001)  # 0.01
 
@@ -578,9 +579,9 @@ class GridWorld(gym.Env):
       my_room_offset = [[1, 1], [1, 7], [8, 7], [7, 1]]
       return [sum(pair) for pair in zip(coord_in_room, my_room_offset[room])]
 
-    # Creates epsilon greedy policy
+    # Creates epsilon_val greedy policy
     def policy_fn(self, observation):
-        A = np.ones(4, dtype=float) * self.epsilon / 4
+        A = np.ones(4, dtype=float) * self.epsilon_val / 4
 
         Q_val = self.Q[observation]
         Q_primitive_val = Q_val[0:4]
@@ -591,6 +592,6 @@ class GridWorld(gym.Env):
         else:
             best_action = np.argmax(Q_primitive_val)
 
-        A[best_action] += (1.0 - self.epsilon)
+        A[best_action] += (1.0 - self.epsilon_val)
         return A
 
