@@ -1,0 +1,62 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: PA2.aux
+The style file: ieeetr.bst
+Database file #1: biblio.bib.bib
+I was expecting a `,' or a `}'---line 3 of file biblio.bib.bib
+ :   
+ :   author={Sutton, Richard S and Barto, Andrew G},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "medium"
+Warning--empty author in git
+Warning--empty journal in git
+Warning--empty year in git
+Warning--empty author and editor in sutton2018reinforcement
+Warning--empty publisher in sutton2018reinforcement
+Warning--empty year in sutton2018reinforcement
+Warning--empty author in david
+Warning--empty journal in david
+Warning--empty year in david
+You've used 3 entries,
+            1876 wiz_defined-function locations,
+            484 strings with 3722 characters,
+and the built_in function-call counts, 370 in all, are:
+= -- 23
+> -- 3
+< -- 0
++ -- 3
+- -- 0
+* -- 35
+:= -- 44
+add.period$ -- 1
+call.type$ -- 3
+change.case$ -- 2
+chr.to.int$ -- 0
+cite$ -- 12
+duplicate$ -- 28
+empty$ -- 54
+format.name$ -- 0
+if$ -- 83
+int.to.chr$ -- 0
+int.to.str$ -- 3
+missing$ -- 3
+newline$ -- 12
+num.names$ -- 0
+pop$ -- 24
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 5
+stack$ -- 0
+substring$ -- 0
+swap$ -- 1
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 9
+while$ -- 0
+width$ -- 4
+write$ -- 17
+(There was 1 error message)
