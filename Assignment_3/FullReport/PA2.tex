@@ -18,6 +18,7 @@
 %% The amssymb package provides various useful mathematical symbols
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{titlesec}
 \usepackage{breqn}
 \usepackage{chemfig}
 \usepackage{csvsimple}
@@ -165,6 +166,11 @@
 \noindent 
 
 
+\titleformat{\section}
+{\normalfont\fontfamily{phv}\fontsize{17}{20}\bfseries\itshape}{\thesubsection}{1em}{}
+
+\titleformat{\subsection}
+{\normalfont\fontfamily{phv}\fontsize{12}{17}\bfseries\itshape}{\thesubsection}{1em}{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Enter name and roll number here
@@ -192,106 +198,125 @@
 
 \section{Hierarchical Reinforcement Learning}
 
-\subsection{Grid World of Four Rooms:}
+The SMDP and Intra option Q learning has been used to solve the four room grid world problem. Let's start with brief introduction about the problem.
 
+
+\subsection{Answers-1: Grid World of Four Rooms and Visualization the learned Q values}
+
+
+
+
+The defined grid world is divided into four rooms. The upper left is room is define as Room-1. Numbering of room follows the clockwise notation. The agent is defined in upper left corner of room as given in fig-\ref{fig:grids} by blue colour cell. In image  In the fig.-\ref{fig:grids}, the brown colour indicates wall and green colour indicates terminal state.The study is conducted for two terminal state which is defined as G1 as in fig.-\ref{grid_a_arrow} and G2 as in fig.-\ref{grid_b_arrow}. In the grid, each room has two hallways which can take agent from one room to another. The hall-way option follows policy $\pi$ such that the agent get transferred to terminal state with shortest possible path and least possible obstacles. 
 
 
 \begin{figure}[H]
 	\centering  
 	\subfigure[Grid world with goal G1]
-	{\includegraphics[width=0.45\linewidth]{./grid_world_A.png}}
+	{\includegraphics[width=0.4\linewidth]{./O1_10000_Arrows.png}\label{grid_a_arrow}}
 	\subfigure[Grid world with goal G2]
-	{\includegraphics[width=0.45\linewidth]{./grid_world_B.png}}
-	\caption{Puddle World with different colour: Grey:Start, Pink:Terminal, Middle:Puddle }
-	\label{fig:puddle}
+	{\includegraphics[width=0.4\linewidth]{./O2_10000_Arrows.png}\label{grid_b_arrow}}
+	\caption{Grid world of four rooms.  Blue:Agent, Green:Terminal The grid world-\ref{grid_a_arrow} has terminal state G1 and grid world-\ref{grid_b_arrow} has terminal state G2. Arrow indicates the optimal policy. The policy in fig-\ref{grid_a_arrow} is obtained using option-1 where as same in fig.-\ref{grid_b_arrow} by option-2 }
+	\label{fig:grids}
 \end{figure}
 
-In Puddle World-C, westerly wind also blowing which forces the agent to move in east direction with probability of 0.5. Suppose agent wants to go in desired state-a with probability 0.9 and reward will be 0 due to transition but due to wind it may happen that agent may end up in the another state-a' with probability 0.5 and assume such state has higher negative reward then wind misguides the agent.
+For one move, agent is rewarded with 0. For terminal state reward is +1. With $\Pr = \frac{2}{3}$, the agent take correct action and other actions are performed with $\Pr = \frac{1}{9}$. The vale of discounted factor is $\gamma=0.9$. Each hallway option has termination condition 0 for states lies within room and 1 if outside. The initiation of state includes room as well as hallway. The initiation state is defined only inside the room which makes the world deterministic. To take agent from one room to another, there are two possible options. Option-1 follows the clockwise notation which take agent from room-1 to room-2. Option-2 follows anti-clockwise direction which can take agent from room-1 to room-4.
 
-\subsection{Q-learning:}
-The goal is to reach the terminal state with highest possible reward. ran the code for 500 episodes and average steps and return has been computed for 50 runs. 
-For each case discount rate $\gamma$ is taken as 0.9, learning rare $\alpha$ is taken as 0.1 and exploration parameter is taken as $\epsilon$= 0.3. 
+To solve the defined problem, SMDP and Intra-option Q learning is utilized. The optimal policy is the fundamental thing for used methods. To obtain the optimal policy using Q-learning, the initial states were randomly selected and goal is directed to hallway. likewise, eight policy is obtained. The state values are obtained using the maximum return.
 
-Q-learning update Rule: \cite{sutton2018reinforcement}
 \begin{equation}
-Q(S,A) = Q(S,A) + \alpha[r + \gamma \space \max_{a}Q(S,a) -Q(S,A)
-\end{equation}
-Epsilon-greedy policy has been used for the exploration. Initially the epsilon was set as 0.1 but as it takes may steps to compute the terminal state. so epsilon value has been boosted to 0.3. 
-
-
-Figure: \ref{fig:policyQ}, shows optimal policy obtained after 500 episodes. It clear from the figure-\ref{fig:policyQ} that agent will never go in the puddle in world-A whereas agent will stay away from the puddle in world-B. Even though world-C has terminal state in the centre, age will try to agent avoid the puddle as much as possible and finally by taking one or least step it will find a way to terminal state. 
-
-
-
-\subsection{SARSA:}
-SARSA stand for State-Action-Reward-State-Action. It is an off policy algorithm. The goal is to reach the terminal state with highest possible reward. Other detail and parameters setting is same as Q-learning,
-
-SARSA update Rule: \cite{sutton2018reinforcement}
-\begin{equation}
-Q(S,A) = Q(S,A) + \alpha[r + \gamma \space Q(S',A') -Q(S,A)
+	V(s) = \argmax_{Q(s,a)} 
 \end{equation}
 
-The main difference between Q-learning and SARSA is that in Q-learning action is chosen in greedy fashion whereas in SARSA is chosen based on certain policy. \cite{medium}. From the the figure:\ref{fig:returnS}, it clear that SARSA also takes a while (around 200) steps in search of optimal policy which also stabilize after around 400 steps. The behaviour of return obtained in different world similar as of Q-Learning but actual values are slightly higher side in case of SARSA.
+The obtained optimal policy for goal-G1 and G2 is given in fig.-\ref{fig:grids}. The visualization of state values are given in fig.-\ref{fig:state_val}. For goal both goals, higher state values are obtained near hallways and terminal state. High state values are indicated by bigger size of circle. 
+
+\begin{figure}[H]
+	\centering  
+	\subfigure[State values with goal G1 by option-1]
+	{\includegraphics[width=0.4\linewidth]{./O1_10000_Circles.png}\label{grid_a_circle}}
+	\subfigure[State values with goal G2 by option-2]
+	{\includegraphics[width=0.4\linewidth]{./O2_10000_Circles.png}\label{grid_b_circle}}
+	\caption{The grid world-\ref{grid_a_circle} has terminal state G1 and grid world-\ref{grid_b_circle} has terminal state G2. Circle size indicates the associated state value. The values in fig-\ref{grid_a_circle} is obtained using option-1 where as same in fig.-\ref{grid_b_circle} by option-2}
+	\label{fig:state_val}
+\end{figure}
+
+\textbf{SMDP Q-learning :}
+
+Semi Markov Decision Processes are generalized MDPs, which allows policy maker to choose action according to change in state. It also provides the evolution of policy with continuous time while following arbitrary probability distribution. In short, SMDP follows the similar nature of MDP with options. Execution option starts with state $\mathcal{I}$ following policy $\pi$ and jumps to terminating state s'. The SMDP Q-learning updates for option-value function is given by,
+\begin{equation}
+	Q(s,o)  = Q(s,o) + \alpha [ r + \gamma^k \max_{o'\in s'} Q(s',o') - Q(s,o)]
+\end{equation}
+where, \\
+k -  the number of time steps between s' and s \\
+r - Cummulative discounted return over time\\
+
+\newpage 
+
+\textbf{For Goal-G1:}
+
+The learned optimal policy by SMDP-Q learning for goal-G1 is given in fig.-\ref{SMDP_G1_policy}. \textbf{The optimal policy is resultant of defined policy and primitive actions as well.} The primitive action are better than option away from goal and near the start state. Whereas, \textbf{near the terminal state Q-values are high and options play crucial role.}
+
+Same can be observed from the state value diagram. \textbf{Near the goal state has higher valuer, which decrease as we move away from the goal.} Due to property of learning from experience and bound of wall near terminal state, in near the goal region there might be high chances of stumbling.  Some of the states are not explored as it possible to reach toward goal by following any option from those states. 
+
+\begin{figure}[H]
+	\centering  
+	\subfigure[Optimal policy by SMDP-Q]
+	{\includegraphics[width=0.39\linewidth]{./Q1_G1_10000_Arrows.png}\label{SMDP_G1_policy}}
+	\subfigure[State values for SMDP-Q]
+	{\includegraphics[width=0.39\linewidth]{./Q1_G1_10000_Circles.png}\label{SMDP_G1_value}}
+	\caption{Grid world of four rooms.  Blue:Agent, Green:Terminal. The optimal policy-\ref{SMDP_G1_policy} and associated state values-\ref{SMDP_G1_value} for Goal-G1 after training of 10000 episodes.}
+	\label{fig:SMDP_G1}
+\end{figure}
+
+\textbf{For Goal-G2:}
+
+The optimal policy for goal-G2 is given in fig.\ref{SMDP_G2_policy}. For this case also, states near the goal selects primitive action over policy as it helps agent to move away from the hallways and direct it towards goal whereas, states away from the goal follows actions. From figure-\ref{fig:SMDP_G2}, it is clear that SMDP Q-learning has obtained optimal policy using \textbf{mix of primitive action as well as options.}
+
+\begin{figure}[H]
+	\centering  
+	\subfigure[Optimal policy by SMDP-Q]
+	{\includegraphics[width=0.39\linewidth]{./Q1_G2_10000_Arrows.png}\label{SMDP_G2_policy}}
+	\subfigure[State values for SMDP-Q]
+	{\includegraphics[width=0.39\linewidth]{./Q1_G2_10000_Circles.png}\label{SMDP_G2_value}}
+	\caption{Grid world of four rooms.  Blue:Agent, Green:Terminal. The optimal policy-\ref{SMDP_G2_policy} and associated state values-\ref{SMDP_G2_value} for Goal-G2 after training of 10000 episodes.}
+	\label{fig:SMDP_G2}
+\end{figure}
+
+ For goal-2 compared to goal-1, the major states follow primitive actions where as options are dominant in case of goal-G1. Mainly for room-1 policy plays major role, whereas for room 2 and 4 it requires both.  \textbf{Near terminal state, dominance of policy make algorithm faster by increasing the learning rate.}
 
 
-From the fig-\ref{fig:combiS}, it clear that for the world-A and B, average number of steps stabilize reduces quite rapidly  whereas, in case of world-C it takes more steps around 25000+ initially which reduces to least after around 180 episodes. Average number of steps in world-c fluctuates due to less its terminal state in puddle world and due to wind. 
+\subsection{Answers-2 : Changed initial state to the centre of room 4}
 
+For the same terminal state, initial state is directed to center of room-4. \textbf{The change in state also causes the change in value function and optimal policy.} The optimal policy obtained in these cases are also mixtures of options as well as primitive actions. 
 
+\begin{figure}[H]
+	\centering  
+	\subfigure[Optimal policy by SMDP-Q for goal G1]
+	{\includegraphics[width=0.39\linewidth]{./Q2_G1_10000_Arrows.png}\label{R4_SMDP_G1_policy}}
+	\subfigure[State values for SMDP-Q for goal G1]
+	{\includegraphics[width=0.39\linewidth]{./Q2_G1_10000_Circles.png}\label{R4_SMDP_G1_value}}
+	\subfigure[Optimal policy by SMDP-Q for goal G2]
+	{\includegraphics[width=0.39\linewidth]{./Q2_G2_10000_Arrows.png}\label{R4_SMDP_G2_policy}}
+	\subfigure[State values for SMDP-Q for goal G2]
+	{\includegraphics[width=0.39\linewidth]{./Q2_G2_10000_Circles.png}\label{R4_SMDP_G2_value}}
+	\caption{Grid world of four rooms.  Blue:Agent, Green:Terminal. The optimal policy-\ref{R4_SMDP_G1_policy} and associated state values-\ref{R4_SMDP_G1_value} for Goal-G1 after training of 10000 episodes. Same way, the optimal policy-\ref{R4_SMDP_G2_policy} and associated state values-\ref{R4_SMDP_G2_value} for Goal-G2}
+	\label{fig:R4_SMDP}
+\end{figure}
 
-Figure: \ref{fig:policyS}, shows optimal policy obtained after 500 episodes for SARSA. It clear from the figure-\ref{fig:policyS} agent will try stay away from the puddle in case of world-A. But for the world-B and C, as their terminal state is near and in the puddle zone they will be negative reward initially but final policy is obtain in such away that they negative reward will be minimal. From the figure-\ref{fig:policyQ} and \ref{fig:policyS}, shows that SARSA learns the safe policy whereas Q-learning learns optimal policy.
+Change of state does not affect the role of primitive action and policy near the terminal states as well as far away from it. The major difference in both scenario (policy for same goal and change of initial state) is change in state value function. By comparing the fig.-\ref{SMDP_G1_policy} and fig.-\ref{R4_SMDP_G1_policy}, it is clear that the \textbf{state value of adjutant room of terminal and start state has higher state values. Change of the initial state directly affect the optimal policy, which varies in both scenario and finds the best possible route using primitive action and options.}
 
-\subsection{SARSA-$\lambda$:}
-The goal is to reach the terminal state with highest possible reward which same as before with all the settings. In this case, ran the code for 500 episodes and average steps and return has been computed for 50 runs with different $\lambda$ values of {0,0.3,0.5,0.9,0.99,1.0} all the obtained result are give in figure-\ref{fig:SLA}-\ref{fig:SLBC}.where $\lambda$  denotes eligibility parameter. Epsilon-greedy policy has been used for the exploration with epsilon value has been boosted to 0.3. 
+ The value obtained in case of goal G2 is higher and shows nature of gradient. As goal-G1 is constrained by two wall these varies in this case. Options play vital role near terminal state of goal-G1, whereas, primitive actions play important role in case of goal-G2.
 
-For $\lambda=0$ it behave as as TD update rule whereas for $\lambda=1$ it behave as Monte-Carlo update. It can be observed from the figure that average return is quite low in intimal stage but with experience it avoids the puddle. With increase in lambda value return increases. For world-A return is quite high as 12-13 with higher lambda values. Where as in case if world-B return is around 7.5 which is also fluctuates lot in both world-A and B. But in case of world-c return is quite low as terminal state in the puddle. For the same reason average steps also fluctuates lot and it takes quite long to stabilize and learn the policy. For all the cases $\lambda$ = {9,0.99,1} oscillates a lot initially but performs quite well. With low $\lambda$ learning will be slow as it takes larger steps to find out the goal in the puddle.
+\subsection{Answers-3: Intra-option Q learning}
 
-The plus point about this algorithm is, it took very less step for world-C comapred to QL and SARSA algorithm. It took around 20000-25000 to average initial step in case of SARSA and QL. where as in this algorithm it took around 10000 maximum steps which made agent to learn policy faster. Average steps further small for $\lambda$=0.9 and more.  
-
-\textbf{REMARK:For case of SARSA and Q-learning obtained video is added in result folder.}
-
-
-\section{Policy Gradient:}
+\section{Deep Reinforcement Learning:}
  For contentious state and action space. policy gradient algorithm are implemented. \cite{david}
- \subsection{Part:1 The environment implementation}
- The  chakra and vishamC environment are implemented using python script. All codes are available in \textbf{rlpa2 folder}.
- The goal of task is to move the point to the centre quickly. The difference between two world is reward function. In chakra reward is calculated by distance 0from origin whereas, in vishamC reward is calculated by function as: $0.5x^2 + \gamma 0.5 y^2$ where $\gamma$=10.
- All the required function are implemented.
- 
- \vspace{2mm}
- \subsection{Part:2 The Rollout Function}
-  All the function including \textbf{rollout function is merged in the policy\_gradient.py file.} The purpose of the roll out function is to obtain the action that needs to be used in implemented above two world.
-  
-   \vspace{2mm}
- \subsection{Part:3 Policy Gradient Implementation}
-	As action space is continuous, stochastic  policy is used. Along with that multivariate Gaussian distribution with identity matrix is used. Mean is calculated using $\theta^T s'$. Two function $ \log \pi (a|s)$ and $\Delta_\theta \log_\pi (a|s)$ are also available in policy\_gradient.py file.
-	
-\subsection{Answers-1 Hyper-parameter Tuning:}
-After implementation of chakra and VishamC world using policy gradient. parameter tuning of batch size, discounted factor $\gamma$ and learning rate $\gamma$ has compared with average return to iterations.
-
-
- 
- From figure-\ref{fig:Preturn}, it clear that when\textbf{ batch size} is high around 100 , then learning rate will be less due to up-gradation of hyper parameter $\theta$ take place after every 100 episode. Result obtained by this setting is more stable and oscillation be less. When batch size is small, observed oscillation will be larger for same setting. For \textbf{discounted factor}, less is good. For value of $\gamma$=0.9 the agent learns slower whereas for 0.1 agent learns faster for similar setting of parameters. For lower value of \textbf{learning rate $\alpha$}=0.1, it observed that fluctuation will be less as low weight is given to update. fluctuation will be further less if batch size is high around 100. For high learning rate with high batch size, learning will be faster but higher learning rate with smaller batch size gives high oscillation in the result.
- 
-by such observation it is clear that setting of optimal hyper parameters gives after 50 iteration gives return of around -22 in case chakra and around -38 in case of vishamC.
-
-The opbatined optimal hyperparameters are:
-\begin{equation}
- \alpha =0.9 , 	\text{batchsize=100}, \gamma =0.9 \text{  for 100 iterations}
-\end{equation}
- 
- 
- \subsection{Answers-2: Visualization of value function for learned policy}
-Visualization of value function for learned policy is done using $\theta^T s'$ as mentioned above by policy gradient method. For given parameter $\theta$ and action can be selected from on multivariate normal distribution by random sampling. here s' is obtained by appending 1 to state-vector s. By setting the parameter $\gamma$=0.9, following policy $\pi$ and randomly selecting start state, value state is obtained such method is similar to the Monte-carlo method. Figure:\ref{fig:Pstate1}-\ref{fig:Pstate2}, obtained after plotting 20 state values obtained by setting parameter to optimal values mentioned above.
-
-For case of \textbf{chakra}, the state values are more near the centre which decrease away from the centre. Value are near to each other for same contour which is due to the negative distance from the centrer. For the case of \textbf{vishamC}, reward function are obtained as mentioned ahead, which shoes state values are quite skewed. Due to skewness, values are quite near to each other and they also decrease away from the centrer. change is major with Y axis compared to X-axis due to more weightage given by setting $\gamma$ =10. By similar manner, state-function is also obtained as picking state and action randomly and computing discounted return followed by policy.
-
 
 	
- \subsection{Answers-3: Plotting of policy trajectory after learned policy}
+\subsection{Answers-1: Hyper-parameter Tuning}	
+\subsection{Answers-2: Report of hyper-parameters tuning}
+\subsection{Answers-3: Report of the variation of hyper-parameters like hidden layer sizes, epsilon, mini-batch size, target frequency.}  
+\subsection{Answers-4: Observations and inferences of removal of the experience replay and/or the target network}
 
-
-	In Policy Trajectory \textbf{for chakra}, it observed that from the figure-\ref{fig:Ptraj} that agent moves towards centre in diagonal direction till it reaches zero x-position. Further it only moves y-direction. Similarly after reaching the y=0 it moves towards centre travelling in x direction. Due to similar values in close region slight oscillations observed in trajectory. In case of \textbf{vishamC}, due to more weight toward y skewness is created thus agent moves in y direction after that it starts moving towards centre by moving in x-direction. Transition in such state is not oscillatory due to similar values in close region.
-	
 	\newpage
 	
 	References:
