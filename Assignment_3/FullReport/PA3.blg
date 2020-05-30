@@ -8,48 +8,55 @@ I was expecting a `,' or a `}'---line 3 of file biblio.bib.bib
  :   author={Sutton, Richard S and Barto, Andrew G},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
+Warning--empty journal in sutton1998between
 Warning--empty author in david
 Warning--empty journal in david
 Warning--empty year in david
-You've used 1 entry,
+Warning--empty author and editor in sutton2018reinforcement
+Warning--empty publisher in sutton2018reinforcement
+Warning--empty year in sutton2018reinforcement
+Warning--empty author in git
+Warning--empty journal in git
+Warning--empty year in git
+You've used 6 entries,
             1876 wiz_defined-function locations,
-            479 strings with 3506 characters,
-and the built_in function-call counts, 135 in all, are:
-= -- 7
-> -- 1
+            502 strings with 4237 characters,
+and the built_in function-call counts, 1312 in all, are:
+= -- 108
+> -- 53
 < -- 0
-+ -- 1
-- -- 0
-* -- 13
-:= -- 22
-add.period$ -- 0
-call.type$ -- 1
-change.case$ -- 1
++ -- 21
+- -- 15
+* -- 108
+:= -- 180
+add.period$ -- 4
+call.type$ -- 6
+change.case$ -- 5
 chr.to.int$ -- 0
-cite$ -- 4
-duplicate$ -- 9
-empty$ -- 18
-format.name$ -- 0
-if$ -- 27
+cite$ -- 16
+duplicate$ -- 74
+empty$ -- 138
+format.name$ -- 15
+if$ -- 305
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 6
-num.names$ -- 0
-pop$ -- 8
+int.to.str$ -- 6
+missing$ -- 6
+newline$ -- 21
+num.names$ -- 3
+pop$ -- 37
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 2
+skip$ -- 36
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
+substring$ -- 64
+swap$ -- 19
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 3
-while$ -- 0
-width$ -- 2
-write$ -- 7
+warning$ -- 10
+while$ -- 9
+width$ -- 7
+write$ -- 45
 (There was 1 error message)
