@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.19)  30 MAY 2020 05:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.19)  8 JUN 2020 22:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1941,360 +1941,71 @@ Underfull \hbox (badness 10000) in paragraph at lines 245--246
  []
 
 [2 <./images/./O1_10000_Arrows.png> <./images/./O2_10000_Arrows.png> <./images/
-./O1_10000_Circles.png> <./images/./O2_10000_Circles.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 253--257
+./O1_10000_Circles.png> <./images/./O2_10000_Circles.png>] [3]
+Underfull \hbox (badness 10000) in paragraph at lines 249--251
 
  []
 
-<./images/./Q1_G1_10000_Arrows.png, id=110, 462.528pt x 346.896pt>
-File: ./images/./Q1_G1_10000_Arrows.png Graphic file (type png)
-
-<use ./images/./Q1_G1_10000_Arrows.png>
-Package pdftex.def Info: ./images/./Q1_G1_10000_Arrows.png used on input line 2
-67.
-(pdftex.def)             Requested size: 211.38832pt x 158.54192pt.
-
-<./images/./Q1_G1_10000_Circles.png, id=112, 462.528pt x 346.896pt>
-File: ./images/./Q1_G1_10000_Circles.png Graphic file (type png)
-
-<use ./images/./Q1_G1_10000_Circles.png>
-Package pdftex.def Info: ./images/./Q1_G1_10000_Circles.png used on input line 
-269.
-(pdftex.def)             Requested size: 211.38832pt x 158.54192pt.
- [3 <./images/./Q1_G1_10000_Arrows.png> <./images/./Q1_G1_10000_Circles.png>]
-<./images/./Q1_G2_10000_Arrows.png, id=132, 462.528pt x 346.896pt>
-File: ./images/./Q1_G2_10000_Arrows.png Graphic file (type png)
-
-<use ./images/./Q1_G2_10000_Arrows.png>
-Package pdftex.def Info: ./images/./Q1_G2_10000_Arrows.png used on input line 2
-83.
-(pdftex.def)             Requested size: 211.38832pt x 158.54192pt.
-
-<./images/./Q1_G2_10000_Circles.png, id=133, 462.528pt x 346.896pt>
-File: ./images/./Q1_G2_10000_Circles.png Graphic file (type png)
-
-<use ./images/./Q1_G2_10000_Circles.png>
-Package pdftex.def Info: ./images/./Q1_G2_10000_Circles.png used on input line 
-285.
-(pdftex.def)             Requested size: 211.38832pt x 158.54192pt.
- [4 <./images/./Q1_G2_10000_Arrows.png> <./images/./Q1_G2_10000_Circles.png>]
-<./images/./Q2_G1_10000_Arrows.png, id=147, 462.528pt x 346.896pt>
-File: ./images/./Q2_G1_10000_Arrows.png Graphic file (type png)
-
-<use ./images/./Q2_G1_10000_Arrows.png>
-Package pdftex.def Info: ./images/./Q2_G1_10000_Arrows.png used on input line 2
-98.
-(pdftex.def)             Requested size: 211.38832pt x 158.54192pt.
-
-<./images/./Q2_G1_10000_Circles.png, id=148, 462.528pt x 346.896pt>
-File: ./images/./Q2_G1_10000_Circles.png Graphic file (type png)
-
-<use ./images/./Q2_G1_10000_Circles.png>
-Package pdftex.def Info: ./images/./Q2_G1_10000_Circles.png used on input line 
-300.
-(pdftex.def)             Requested size: 211.38832pt x 158.54192pt.
-
-<./images/./Q2_G2_10000_Arrows.png, id=149, 462.528pt x 346.896pt>
-File: ./images/./Q2_G2_10000_Arrows.png Graphic file (type png)
-
-<use ./images/./Q2_G2_10000_Arrows.png>
-Package pdftex.def Info: ./images/./Q2_G2_10000_Arrows.png used on input line 3
-02.
-(pdftex.def)             Requested size: 211.38832pt x 158.54192pt.
-
-<./images/./Q2_G2_10000_Circles.png, id=150, 462.528pt x 346.896pt>
-File: ./images/./Q2_G2_10000_Circles.png Graphic file (type png)
-
-<use ./images/./Q2_G2_10000_Circles.png>
-Package pdftex.def Info: ./images/./Q2_G2_10000_Circles.png used on input line 
-304.
-(pdftex.def)             Requested size: 211.38832pt x 158.54192pt.
- [5 <./images/./Q2_G1_10000_Arrows.png> <./images/./Q2_G1_10000_Circles.png> <.
-/images/./Q2_G2_10000_Arrows.png> <./images/./Q2_G2_10000_Circles.png>]
-<./images/./Q3_G1_10000_Arrows.png, id=175, 462.528pt x 346.896pt>
-File: ./images/./Q3_G1_10000_Arrows.png Graphic file (type png)
-
-<use ./images/./Q3_G1_10000_Arrows.png>
-Package pdftex.def Info: ./images/./Q3_G1_10000_Arrows.png used on input line 3
-32.
-(pdftex.def)             Requested size: 211.38832pt x 158.54192pt.
-
-<./images/./Q3_G1_10000_Circles.png, id=176, 462.528pt x 346.896pt>
-File: ./images/./Q3_G1_10000_Circles.png Graphic file (type png)
-
-<use ./images/./Q3_G1_10000_Circles.png>
-Package pdftex.def Info: ./images/./Q3_G1_10000_Circles.png used on input line 
-334.
-(pdftex.def)             Requested size: 211.38832pt x 158.54192pt.
-
-<./images/./Q3_G2_10000_Arrows.png, id=177, 462.528pt x 346.896pt>
-File: ./images/./Q3_G2_10000_Arrows.png Graphic file (type png)
-
-<use ./images/./Q3_G2_10000_Arrows.png>
-Package pdftex.def Info: ./images/./Q3_G2_10000_Arrows.png used on input line 3
-36.
-(pdftex.def)             Requested size: 211.38832pt x 158.54192pt.
-
-<./images/./Q3_G2_10000_Circles.png, id=178, 462.528pt x 346.896pt>
-File: ./images/./Q3_G2_10000_Circles.png Graphic file (type png)
-
-<use ./images/./Q3_G2_10000_Circles.png>
-Package pdftex.def Info: ./images/./Q3_G2_10000_Circles.png used on input line 
-338.
-(pdftex.def)             Requested size: 211.38832pt x 158.54192pt.
- [6 <./images/./Q3_G1_10000_Arrows.png> <./images/./Q3_G1_10000_Circles.png> <.
-/images/./Q3_G2_10000_Arrows.png> <./images/./Q3_G2_10000_Circles.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 348--349
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 351--352
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 353--354
-
- []
-
-<./images/./Q4_G1_10000_Arrows.png, id=205, 462.528pt x 346.896pt>
-File: ./images/./Q4_G1_10000_Arrows.png Graphic file (type png)
-
-<use ./images/./Q4_G1_10000_Arrows.png>
-Package pdftex.def Info: ./images/./Q4_G1_10000_Arrows.png used on input line 3
-59.
-(pdftex.def)             Requested size: 211.38832pt x 158.54192pt.
-
-<./images/./Q4_G1_10000_Circles.png, id=206, 462.528pt x 346.896pt>
-File: ./images/./Q4_G1_10000_Circles.png Graphic file (type png)
-
-<use ./images/./Q4_G1_10000_Circles.png>
-Package pdftex.def Info: ./images/./Q4_G1_10000_Circles.png used on input line 
-361.
-(pdftex.def)             Requested size: 211.38832pt x 158.54192pt.
-
-<./images/./Q4_G2_10000_Arrows.png, id=207, 462.528pt x 346.896pt>
-File: ./images/./Q4_G2_10000_Arrows.png Graphic file (type png)
-
-<use ./images/./Q4_G2_10000_Arrows.png>
-Package pdftex.def Info: ./images/./Q4_G2_10000_Arrows.png used on input line 3
-63.
-(pdftex.def)             Requested size: 211.38832pt x 158.54192pt.
-
-<./images/./Q4_G2_10000_Circles.png, id=208, 462.528pt x 346.896pt>
-File: ./images/./Q4_G2_10000_Circles.png Graphic file (type png)
-
-<use ./images/./Q4_G2_10000_Circles.png>
-Package pdftex.def Info: ./images/./Q4_G2_10000_Circles.png used on input line 
-365.
-(pdftex.def)             Requested size: 211.38832pt x 158.54192pt.
-
-<./images/./Avg_steps_G1.png, id=217, 462.528pt x 346.896pt>
-File: ./images/./Avg_steps_G1.png Graphic file (type png)
-
-<use ./images/./Avg_steps_G1.png>
-Package pdftex.def Info: ./images/./Avg_steps_G1.png used on input line 377.
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-
-<./images/./Avg_steps_G2.png, id=218, 462.528pt x 346.896pt>
-File: ./images/./Avg_steps_G2.png Graphic file (type png)
-
-<use ./images/./Avg_steps_G2.png>
-Package pdftex.def Info: ./images/./Avg_steps_G2.png used on input line 379.
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
- [7 <./images/./Q4_G1_10000_Arrows.png> <./images/./Q4_G1_10000_Circles.png> <.
-/images/./Q4_G2_10000_Arrows.png> <./images/./Q4_G2_10000_Circles.png>]
-<./images/./Total_return_steps_G1.png, id=238, 462.528pt x 346.896pt>
-File: ./images/./Total_return_steps_G1.png Graphic file (type png)
-
-<use ./images/./Total_return_steps_G1.png>
-Package pdftex.def Info: ./images/./Total_return_steps_G1.png used on input lin
-e 394.
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-File: ./images/./Total_return_steps_G1.png Graphic file (type png)
-
-<use ./images/./Total_return_steps_G1.png>
-Package pdftex.def Info: ./images/./Total_return_steps_G1.png used on input lin
-e 396.
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 397.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 397.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 397.
-
-<./images/./Total_return_G1.png, id=243, 462.528pt x 346.896pt>
-File: ./images/./Total_return_G1.png Graphic file (type png)
-
-<use ./images/./Total_return_G1.png>
-Package pdftex.def Info: ./images/./Total_return_G1.png used on input line 404.
-
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-
-<./images/./Total_return_G2.png, id=244, 462.528pt x 346.896pt>
-File: ./images/./Total_return_G2.png Graphic file (type png)
-
-<use ./images/./Total_return_G2.png>
-Package pdftex.def Info: ./images/./Total_return_G2.png used on input line 406.
-
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
- [8 <./images/./Avg_steps_G1.png> <./images/./Avg_steps_G2.png> <./images/./Tot
-al_return_steps_G1.png>] [9 <./images/./Total_return_G1.png> <./images/./Total_
-return_G2.png>]
-<./images/./Avg_rewards.png, id=277, 462.528pt x 346.896pt>
-File: ./images/./Avg_rewards.png Graphic file (type png)
-
-<use ./images/./Avg_rewards.png>
-Package pdftex.def Info: ./images/./Avg_rewards.png used on input line 429.
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-
-<./images/./Episode_lengths.png, id=278, 462.528pt x 346.896pt>
-File: ./images/./Episode_lengths.png Graphic file (type png)
-
-<use ./images/./Episode_lengths.png>
-Package pdftex.def Info: ./images/./Episode_lengths.png used on input line 431.
-
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-
-<./images/./Learned_Episode_lengths.png, id=279, 462.528pt x 346.896pt>
-File: ./images/./Learned_Episode_lengths.png Graphic file (type png)
-
-<use ./images/./Learned_Episode_lengths.png>
-Package pdftex.def Info: ./images/./Learned_Episode_lengths.png used on input l
-ine 433.
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
- [10 <./images/./Avg_rewards.png> <./images/./Episode_lengths.png> <./images/./
-Learned_Episode_lengths.png>]
-[11] <./images/./Avg_rewards_EPSILONs.png, id=312, 462.528pt x 346.896pt>
-File: ./images/./Avg_rewards_EPSILONs.png Graphic file (type png)
-
-<use ./images/./Avg_rewards_EPSILONs.png>
-Package pdftex.def Info: ./images/./Avg_rewards_EPSILONs.png used on input line
- 478.
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-
-<./images/./Avg_rewards_HiddenSizes.png, id=313, 462.528pt x 346.896pt>
-File: ./images/./Avg_rewards_HiddenSizes.png Graphic file (type png)
-
-<use ./images/./Avg_rewards_HiddenSizes.png>
-Package pdftex.def Info: ./images/./Avg_rewards_HiddenSizes.png used on input l
-ine 480.
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-
-<./images/./Avg_rewards_MINIBATCHs.png, id=314, 462.528pt x 346.896pt>
-File: ./images/./Avg_rewards_MINIBATCHs.png Graphic file (type png)
-
-<use ./images/./Avg_rewards_MINIBATCHs.png>
-Package pdftex.def Info: ./images/./Avg_rewards_MINIBATCHs.png used on input li
-ne 482.
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-
-<./images/./Avg_rewards_TARGETs.png, id=315, 462.528pt x 346.896pt>
-File: ./images/./Avg_rewards_TARGETs.png Graphic file (type png)
-
-<use ./images/./Avg_rewards_TARGETs.png>
-Package pdftex.def Info: ./images/./Avg_rewards_TARGETs.png used on input line 
-484.
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
- [12 <./images/./Avg_rewards_EPSILONs.png> <./images/./Avg_rewards_HiddenSizes.
-png> <./images/./Avg_rewards_MINIBATCHs.png> <./images/./Avg_rewards_TARGETs.pn
-g>]
-<./images/./Episode_lengths_EPSILONs.png, id=343, 462.528pt x 346.896pt>
-File: ./images/./Episode_lengths_EPSILONs.png Graphic file (type png)
-
-<use ./images/./Episode_lengths_EPSILONs.png>
-Package pdftex.def Info: ./images/./Episode_lengths_EPSILONs.png used on input 
-line 503.
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-
-<./images/./Episode_lengths_HiddenSizes.png, id=344, 462.528pt x 346.896pt>
-File: ./images/./Episode_lengths_HiddenSizes.png Graphic file (type png)
-
-<use ./images/./Episode_lengths_HiddenSizes.png>
-Package pdftex.def Info: ./images/./Episode_lengths_HiddenSizes.png used on inp
-ut line 505.
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-
-<./images/./Episode_lengths_MINIBATCHs.png, id=345, 462.528pt x 346.896pt>
-File: ./images/./Episode_lengths_MINIBATCHs.png Graphic file (type png)
-
-<use ./images/./Episode_lengths_MINIBATCHs.png>
-Package pdftex.def Info: ./images/./Episode_lengths_MINIBATCHs.png used on inpu
-t line 507.
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-
-<./images/./Episode_lengths_TARGETs.png, id=346, 462.528pt x 346.896pt>
-File: ./images/./Episode_lengths_TARGETs.png Graphic file (type png)
-
-<use ./images/./Episode_lengths_TARGETs.png>
-Package pdftex.def Info: ./images/./Episode_lengths_TARGETs.png used on input l
-ine 509.
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-
-<./images/./Avg_rewards_wos.png, id=355, 462.528pt x 346.896pt>
-File: ./images/./Avg_rewards_wos.png Graphic file (type png)
-
-<use ./images/./Avg_rewards_wos.png>
-Package pdftex.def Info: ./images/./Avg_rewards_wos.png used on input line 525.
-
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-
-<./images/./Episode_lengths_wos.png, id=356, 462.528pt x 346.896pt>
-File: ./images/./Episode_lengths_wos.png Graphic file (type png)
-
-<use ./images/./Episode_lengths_wos.png>
-Package pdftex.def Info: ./images/./Episode_lengths_wos.png used on input line 
-527.
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
-
-<./images/./Learned_Episode_lengths_wos.png, id=357, 462.528pt x 346.896pt>
-File: ./images/./Learned_Episode_lengths_wos.png Graphic file (type png)
-
-<use ./images/./Learned_Episode_lengths_wos.png>
-Package pdftex.def Info: ./images/./Learned_Episode_lengths_wos.png used on inp
-ut line 529.
-(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
- [13 <./images/./Episode_lengths_EPSILONs.png> <./images/./Episode_lengths_Hidd
-enSizes.png> <./images/./Episode_lengths_MINIBATCHs.png> <./images/./Episode_le
-ngths_TARGETs.png>] [14 <./images/./Avg_rewards_wos.png> <./images/./Episode_le
-ngths_wos.png> <./images/./Learned_Episode_lengths_wos.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 542--544
-
- []
-
-(./PA3.bbl) [15]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 573.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 573.
+(./PA3.bbl) [4]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 280.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 280.
  (./PA3.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 573.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 573.
-Package rerunfilecheck Info: File `PA3.out' has not changed.
-(rerunfilecheck)             Checksum: 4E81F4696CDAC87BDC20AD91D835DD59;1061.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 573.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 280.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 280.
+
+
+Package rerunfilecheck Warning: File `PA3.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `PA3.out':
+(rerunfilecheck)             Before: 4E81F4696CDAC87BDC20AD91D835DD59;1061
+(rerunfilecheck)             After:  D782531394707999E17CE7835DE179C9;193.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 280.
  ) 
 Here is how much of TeX's memory you used:
- 33171 strings out of 493029
- 641784 string characters out of 6136233
- 824546 words of memory out of 5000000
- 36001 multiletter control sequences out of 15000+600000
- 61217 words of font info for 110 fonts, out of 8000000 for 9000
+ 32892 strings out of 493029
+ 634227 string characters out of 6136233
+ 824547 words of memory out of 5000000
+ 35829 multiletter control sequences out of 15000+600000
+ 48395 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,9n,67p,10374b,414s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/rsfs/rsfs10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/hel
-vetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/urw/times/utmri8a.pfb>
-Output written on PA3.pdf (15 pages, 12051256 bytes).
+ 62i,7n,67p,10374b,353s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{subsection.2.4} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.2.3} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.2.2} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.2.1} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.2} has been referenced but does not exist, 
+replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.1.4} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.1.3} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.1.2} has been referenced but does not ex
+ist, replaced by a fixed one
+
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
+rw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on PA3.pdf (4 pages, 228816 bytes).
 PDF statistics:
- 450 PDF objects out of 1000 (max. 8388607)
- 302 compressed objects within 4 object streams
- 91 named destinations out of 1000 (max. 500000)
- 288 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 155 PDF objects out of 1000 (max. 8388607)
+ 128 compressed objects within 2 object streams
+ 28 named destinations out of 1000 (max. 500000)
+ 113 words of extra memory for PDF output out of 10000 (max. 10000000)
 
