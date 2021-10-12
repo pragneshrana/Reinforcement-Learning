@@ -1,3 +1,0 @@
-\select@language {english}
-\contentsline {section}{\numberline {1}Hierarchical Reinforcement Learning}{1}{section.1}
-\contentsline {subsection}{\numberline {1.1}Answers-1: Grid World of Four Rooms and Visualization the learned Q values}{1}{subsection.1.1}
